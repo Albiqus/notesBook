@@ -1,14 +1,19 @@
 import './App.css';
+import { Decoration } from './components/Decoration/Decoration';
 import { DescriptionsContainer } from './components/Description/Descriptions';
-import { List } from './components/List/List';
+import { ModalContainer } from './components/Modal/Modal';
+import { TasksContainer } from './components/Tasks/Tasks';
 
 function App() {
   return (
       <div className="App">
-          <List/>
-          <div></div>
-          <DescriptionsContainer/>
-    </div>
+              <ModalContainer/>
+          <div className="main-content">
+              <TasksContainer />
+              <Decoration/>
+              <DescriptionsContainer />
+         </div>
+      </div>
   );
 }
 

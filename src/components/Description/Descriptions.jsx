@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 const Descriptions = (props) => {
     return (
-    <div className={classes.description}>
+    <div className={classes.descriptionBox}>
        <p>{props.tasks[props.currentTaskId].description}</p>
     </div>
     )

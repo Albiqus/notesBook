@@ -1,3 +1,11 @@
-.description{
-    border: 1px solid black;
+.descriptionBox {
+    position: relative;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 12px;
+    background-color: rgb(122, 122, 122);
 }
+
+.descriptionBox p{
+position: absolute;
+}
+

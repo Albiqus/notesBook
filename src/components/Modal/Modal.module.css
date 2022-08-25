@@ -1,0 +1,71 @@
+.modalBox{
+height: 100vh;
+width: 100vw;
+background-color: rgba(0, 0, 0, 0.5);
+position: fixed;
+z-index: 99999
+}
+
+.modalContentBox {
+    position: relative;
+    margin-left: 123px;
+    margin-top: 360px;
+    height: 300px;
+    width: 200px;
+    background-color: rgb(122, 122, 122);
+    outline: 2px solid rgb(0, 0, 0);
+    border-radius: 12px;
+}
+
+.modalContentBox input{
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  width: 75%;
+  height: 30px;
+  font-family: Georgia, serif;
+  font-size: 20px;
+  box-sizing: border-box;
+  margin: 0;
+  background-color: rgb(184, 184, 184);
+  outline: none;
+}
+.modalContentBox textarea{
+  position: absolute;
+  left: 25px;
+  top: 80px;
+  width: 75%;
+  height: 130px;
+  font-family: Georgia, serif;
+  font-size: 17px;
+  box-sizing: border-box;
+  margin: 0;
+  background-color: rgb(184, 184, 184);
+  outline: none;
+  resize: none;
+}
+
+.submitFormButton {
+position: absolute;
+bottom: 25px;
+left: 25px;
+width: 75%;
+height: 40px;
+font-family: Georgia, serif;
+font-size: 17px;
+background-color: rgb(184, 184, 184);
+border: none;
+cursor: pointer;
+}
+
+.closeModalButton {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    height: 18px;
+    width: 18px;
+    border-radius: 12.5px;
+    border: none;
+    background-image: url("../../../public/img/close-modal.png");
+    cursor: pointer;
+}

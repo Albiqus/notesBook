@@ -1,9 +1,13 @@
 .App {
-margin-left: 500px;
-margin-top: 80px;
+
+}
+
+.main-content {
+padding-left: 100px;
+padding-top: 80px;
 display: grid;
 grid-template-areas:
 "list description";
-  grid-template-rows: 800px;
-  grid-template-columns: 200px 50px 600px;
+grid-template-rows: 700px;
+grid-template-columns: 250px 50px 550px;
 }

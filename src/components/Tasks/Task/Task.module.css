@@ -1,0 +1,27 @@
+.taskItem{
+    position: relative;
+    height: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    background-color: rgb(122, 122, 122);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.taskItem p{
+position: absolute;
+margin: 0;
+left: 20px;
+top: 7px;
+font-family: Georgia, serif;
+font-size: 20px;
+}
+
+.taskItem:hover{
+outline: 2px solid rgb(192, 192, 192);
+}
+
+.active{
+  outline: 2px solid rgb(192, 192, 192);
+}

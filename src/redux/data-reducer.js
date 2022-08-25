@@ -1,5 +1,5 @@
 const SET_CURRENT_TASK_ID = 'const SET_CURRENT_TASK_ID'
-
+const ADD_TASK = 'ADD_TASK'
 
 const startState = {
     tasks: [
@@ -11,13 +11,13 @@ const startState = {
 
         {
             id: 1,
-             task: 'Почистить унитаз',
+             task: 'Почистить',
              description: 'убрать застывшее говнище с унитаза'
         },
 
         {
             id: 2,
-            task: 'Сходить в магазин',
+            task: 'Сходить',
             description: 'Сходить в магазин и купить продуктов'
         },
     ],
@@ -31,6 +31,15 @@ export const listReducer = (state = startState, action) => {
                 ...state,
                 currentTaskId: action.currentTaskId
             }
+        case ADD_TASK:
+            return {
+                ...state,
+                tasks: [...state.tasks, {
+                    id: state.tasks.length,
+                    task: action.task,
+                    description: action.description
+                }]
+            }
         default:
             return state;
     }
@@ -42,6 +51,12 @@ export const listReducer = (state = startState, action) => {
 export const setCurrentTaskId = (currentTaskId) => ({
     type: SET_CURRENT_TASK_ID, currentTaskId
 })
+export const addTask = (task, description) => ({
+    type: ADD_TASK,
+    task,
+    description
+})
+
 
 
 

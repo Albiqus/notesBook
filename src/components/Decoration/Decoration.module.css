@@ -1,0 +1,14 @@
+.decorationBox {
+position: relative;
+}
+
+.decorationBox p{
+    position: absolute;
+    writing-mode: vertical-lr; 
+    text-orientation: upright;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 0;
+    left: -5px;
+    top: 80px
+}
