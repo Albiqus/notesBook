@@ -1,12 +1,12 @@
 import { legacy_createStore, combineReducers } from "redux";
 import { listReducer } from "./data-reducer";
-import { modalReducer } from "./modal-reducer";
+import { modalsReducer } from "./modals-reducer";
 
 
 
 let reducers = combineReducers({
     data: listReducer,
-    modal: modalReducer
+    modals: modalsReducer
 })
 
 let store = legacy_createStore(reducers)

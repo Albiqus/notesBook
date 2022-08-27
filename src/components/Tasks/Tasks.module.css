@@ -21,3 +21,12 @@
 .tasksBox button:hover {
     outline: 2px solid rgb(192, 192, 192);
 }
+
+.tasksBox p {
+    color: white;
+position: absolute;
+left: 65px;
+top: 7px;
+font-family: Georgia, serif;
+font-size: 20px;
+}

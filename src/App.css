@@ -7,7 +7,7 @@ padding-left: 100px;
 padding-top: 80px;
 display: grid;
 grid-template-areas:
-"list description";
+"list decoration description";
 grid-template-rows: 700px;
 grid-template-columns: 250px 50px 550px;
 }

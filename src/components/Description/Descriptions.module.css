@@ -5,7 +5,63 @@
     background-color: rgb(122, 122, 122);
 }
 
-.descriptionBox p{
+.descriptionText {
 position: absolute;
+top: 91px;
+left: 31px; 
+right: 30px;
 }
 
+.description {
+margin: 0;
+font-family: Georgia, serif;
+font-size: 20px;
+line-height:  1.2;
+color: white;
+}
+
+.header {
+font-weight: bold;
+font-family: Georgia, serif;
+font-size: 30px;
+position: absolute;
+top: -9px;
+left: 31px;
+line-height:  1.5;
+color: white;
+}
+
+
+.editButton{
+position: absolute;
+right: 20px;
+top: 20px;
+background-color: rgb(90, 90, 90);
+height: 60px;
+width: 60px;
+border-radius: 30px;
+background-image: url(../../../public/img/edit-task.png);
+cursor: pointer;
+border: none;
+}
+
+.editButton:hover{
+   outline: 2px solid rgb(192, 192, 192); 
+}
+
+.removeButton {
+position: absolute;
+right: 30px;
+bottom: 30px;
+background-color: rgb(90, 90, 90);
+height: 60px;
+width: 60px;
+border-radius: 30px;
+background-image: url(../../../public/img/remove-task2.png);
+cursor: pointer;
+border: none;
+}
+
+.removeButton:hover{
+   outline: 2px solid rgb(192, 192, 192); 
+}

@@ -1,0 +1,61 @@
+.modalBox{
+height: 100vh;
+width: 100vw;
+background-color: rgba(0, 0, 0, 0.5);
+position: fixed;
+z-index: 99999
+}
+
+.modalContentBox {
+    position: relative;
+    margin-left: 200px;
+    margin-top: 180px;
+    height: 150px;
+    width: 500px;
+    background-color: rgb(122, 122, 122);
+    outline: 2px solid rgb(0, 0, 0);
+    border-radius: 12px;
+}
+
+.modalContentBox p{ 
+position: absolute;
+top: 10px;
+left: 30px;
+font-family: Georgia, serif;
+font-size: 17px;
+color: white;
+}
+
+.yesButton {
+position: absolute;
+bottom: 25px;
+left: 113px;
+width: 80px;
+height: 40px;
+font-family: Georgia, serif;
+font-size: 17px;
+background-color: rgb(184, 184, 184);
+border: none;
+cursor: pointer;
+}
+
+.yesButton:hover{
+color: white;
+}
+
+.noButton {
+position: absolute;
+bottom: 25px;
+left: 306px;
+width: 80px;
+height: 40px;
+font-family: Georgia, serif;
+font-size: 17px;
+background-color: rgb(184, 184, 184);
+border: none;
+cursor: pointer;
+}
+
+.noButton:hover{
+color: white;
+}
