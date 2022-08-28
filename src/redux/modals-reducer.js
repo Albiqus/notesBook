@@ -1,19 +1,19 @@
 const SET_ADD_TASK_MODAL_ACTIVE_STATUS = 'SET_ADD_TASK_MODAL_ACTIVE_STATUS';
 const SET_EDIT_TASK_MODAL_ACTIVE_STATUS = 'SET_EDIT_TASK_MODAL_ACTIVE_STATUS'
-const SET_REMOVE_TASK_MODAL_ACTIVE_STATUS = 'SET_REMOVE_TASK_MODAL_ACTIVE_STATUS';
-const UPDATE_INPUT_TEXT = 'UPDATE_INPUT_TEXT';
-const UPDATE_TEXTAREA_TEXT = 'UPDATE_TEXTAREA_TEXT';
-const SET_CURRENT_TASK_TEXT = 'SET_CURRENT_TASK_TEXT'
-const SET_CURRENT_TASK_HEADER = 'SET_CURRENT_TASK_HEADER'
+const SET_ON_REMOVE_TASK_MODAL_ACTIVE_STATUS = 'SET_ON_REMOVE_TASK_MODAL_ACTIVE_STATUS';
+const SET_ON_CANCEL_ADD_TASK_MODAL_ACTIVE_STATUS = 'SET_ON_CANCEL_ADD_TASK_MODAL_ACTIVE_STATUS';
+const SET_ON_CANCEL_EDIT_TASK_MODAL_ACTIVE_STATUS = 'SET_ON_CANCEL_EDIT_TASK_MODAL_ACTIVE_STATUS'
+const UPDATE_HEADER_TEXT = 'UPDATE_INPUT_TEXT';
+const UPDATE_DESCRIPTION_TEXT = 'UPDATE_TEXTAREA_TEXT';
 
 const startState = {
     addTaskModalActiveStatus: false,
-    editTaskModalActiveStatus: true,
-    removeTaskModalActiveStatus: false,
-    inputText: '',
-    textareaText: '',
-    currentTaskText: '',
-    currentTaskHeader: ''
+    editTaskModalActiveStatus: false,
+    onRemoveTaskModalActiveStatus: false,
+    onCancelAddTaskModalActiveStatus: false,
+    onCancelEditTaskModalActiveStatus: false,
+    headerText: '',
+    descriptionText: '',
 }
 
 export const modalsReducer = (state = startState, action) => {
@@ -21,37 +21,37 @@ export const modalsReducer = (state = startState, action) => {
         case SET_ADD_TASK_MODAL_ACTIVE_STATUS:
             return {
                 ...state,
-                addTaskModalActiveStatus: action.addTaskModalActiveStatus
+                addTaskModalActiveStatus: action.status
             }
         case SET_EDIT_TASK_MODAL_ACTIVE_STATUS:
             return {
                 ...state,
-                editTaskModalActiveStatus: action.editTaskModalActiveStatus
+                editTaskModalActiveStatus: action.status
             }
-        case SET_REMOVE_TASK_MODAL_ACTIVE_STATUS:
+        case SET_ON_REMOVE_TASK_MODAL_ACTIVE_STATUS:
             return {
                 ...state,
-                removeTaskModalActiveStatus: action.removeTaskModalActiveStatus
+                onRemoveTaskModalActiveStatus: action.status
             }
-         case UPDATE_INPUT_TEXT:
+        case SET_ON_CANCEL_ADD_TASK_MODAL_ACTIVE_STATUS:
              return {
                  ...state,
-                 inputText: action.inputText
+                 onCancelAddTaskModalActiveStatus: action.status
             }
-        case UPDATE_TEXTAREA_TEXT:
+        case SET_ON_CANCEL_EDIT_TASK_MODAL_ACTIVE_STATUS:
             return {
                 ...state,
-                textareaText: action.textareaText
+                onCancelEditTaskModalActiveStatus: action.status
             }
-         case SET_CURRENT_TASK_TEXT:
-             return {
-                 ...state,
-                 currentTaskText: action.currentTaskText
-            }
-        case SET_CURRENT_TASK_HEADER:
+        case UPDATE_HEADER_TEXT:
             return {
                 ...state,
-                currentTaskHeader: action.currentTaskHeader
+                headerText: action.text
+            }
+        case UPDATE_DESCRIPTION_TEXT:
+            return {
+                ...state,
+                descriptionText: action.text
             }
         default:
             return state;
@@ -59,38 +59,40 @@ export const modalsReducer = (state = startState, action) => {
 }
 
 
-export const setAddTaskModalActiveStatus = (addTaskModalActiveStatus) => ({
+export const setAddTaskModalActiveStatus = (status) => ({
     type: SET_ADD_TASK_MODAL_ACTIVE_STATUS,
-    addTaskModalActiveStatus
+    status
 })
 
-export const setEditTaskModalActiveStatus = (editTaskModalActiveStatus) => ({
+export const setEditTaskModalActiveStatus = (status) => ({
     type: SET_EDIT_TASK_MODAL_ACTIVE_STATUS,
-    editTaskModalActiveStatus
+    status
 })
 
-export const setRemoveTaskModalActiveStatus = (removeTaskModalActiveStatus) => ({
-    type: SET_REMOVE_TASK_MODAL_ACTIVE_STATUS,
-    removeTaskModalActiveStatus
+export const setOnRemoveTaskModalActiveStatus = (status) => ({
+    type: SET_ON_REMOVE_TASK_MODAL_ACTIVE_STATUS,
+    status
 })
 
-export const updateInputText = (inputText) => ({
-    type: UPDATE_INPUT_TEXT,
-    inputText
+export const setOnCancelAddTaskModalActiveStatus = (status) => ({
+    type: SET_ON_CANCEL_ADD_TASK_MODAL_ACTIVE_STATUS,
+    status
 })
 
-export const updateTextareaText = (textareaText) => ({
-    type: UPDATE_TEXTAREA_TEXT,
-    textareaText
+export const setOnCancelEditTaskModalActiveStatus = (status) => ({
+    type: SET_ON_CANCEL_EDIT_TASK_MODAL_ACTIVE_STATUS,
+    status
 })
 
-export const setCurrentTaskText = (currentTaskText) => ({
-    type: SET_CURRENT_TASK_TEXT,
-    currentTaskText
+
+export const updateHeaderText = (text) => ({
+    type: UPDATE_HEADER_TEXT,
+    text
 })
 
-export const setCurrentTaskHeader = (currentTaskHeader) => ({
-    type: SET_CURRENT_TASK_HEADER,
-    currentTaskHeader
+export const updateDescriptionText = (text) => ({
+    type: UPDATE_DESCRIPTION_TEXT,
+    text
 })
+
 

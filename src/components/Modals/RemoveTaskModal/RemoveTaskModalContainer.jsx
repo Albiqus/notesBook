@@ -2,11 +2,11 @@ import classes from './RemoveTaskModalContainer.module.css';
 import { connect } from 'react-redux';
 import React from 'react';
 import { removeTask } from '../../../redux/data-reducer';
-import { setRemoveTaskModalActiveStatus } from '../../../redux/modals-reducer';
+import { setOnRemoveTaskModalActiveStatus } from '../../../redux/modals-reducer';
 
 const RemoveTaskModal = (props) => {
     const closeModal = () => {
-        props.setRemoveTaskModalActiveStatus(false)
+        props.setOnRemoveTaskModalActiveStatus(false)
     }
 
     const onButtonYesClick = () => {
@@ -18,11 +18,11 @@ const RemoveTaskModal = (props) => {
         closeModal()
     }
 
-    if (props.removeTaskModalActiveStatus) {
+    if (props.onRemoveTaskModalActiveStatus) {
         return (
             <div className={classes.modalBox}>
                 <div className={classes.modalContentBox}>
-                    <p>Вы уверены, что хотите удалить заметку "{props.currentTask}"?</p>
+                    <p>Вы уверены, что хотите удалить заметку {props.currentTask}?</p>
                     <button onClick={onButtonYesClick} className={classes.yesButton}>Да</button>
                     <button onClick={onButtonNoClick} className={classes.noButton}>Нет</button>
                 </div>
@@ -32,11 +32,11 @@ const RemoveTaskModal = (props) => {
 }
 const mapStateToProps = (state) => {
     return {
-        removeTaskModalActiveStatus: state.modals.removeTaskModalActiveStatus,
+        onRemoveTaskModalActiveStatus: state.modals.onRemoveTaskModalActiveStatus,
         currentTask: state.data.currentTask,
         currentTaskId: state.data.currentTaskId,
     }
 }
 
-const RemoveTaskModalContainer = connect(mapStateToProps, { removeTask, setRemoveTaskModalActiveStatus })(RemoveTaskModal)
+const RemoveTaskModalContainer = connect(mapStateToProps, { removeTask, setOnRemoveTaskModalActiveStatus })(RemoveTaskModal)
 export { RemoveTaskModalContainer }

@@ -1,6 +1,6 @@
 import classes from './AddTaskModalContainer.module.css';
 import { connect } from 'react-redux';
-import { setAddTaskModalActiveStatus, updateInputText, updateTextareaText } from '../../../redux/modals-reducer';
+import { setAddTaskModalActiveStatus, updateHeaderText, updateDescriptionText, setOnCancelAddTaskModalActiveStatus } from '../../../redux/modals-reducer';
 import { addTask } from '../../../redux/data-reducer';
 import React from 'react';
 
@@ -10,22 +10,27 @@ const AddTaskModal = (props) => {
         props.setAddTaskModalActiveStatus(false)
     }
     
-    const updateInputText = (e) => {
-        props.updateInputText(e.target.value)
+    const updateHeaderText = (e) => {
+        props.updateHeaderText(e.target.value)
     }
 
-    const updateTextareaText = (e) => {
-        props.updateTextareaText(e.target.value)
+    const updateDescriptionText = (e) => {
+        props.updateDescriptionText(e.target.value)
     }
     
     const input = React.createRef()
     const textarea = React.createRef()
-
-    const addTask = (e) => {
+    
+    const onCancelButtonClick = () => {
+        input.current.value === '' && textarea.current.value === ''
+            ? closeModal()
+            : props.setOnCancelAddTaskModalActiveStatus(true)
+    }
+    const onAddButtonClick = (e) => {
         e.preventDefault()
         props.addTask(input.current.value, textarea.current.value)
-        props.updateInputText('')
-        props.updateTextareaText('')
+        props.updateHeaderText('')
+        props.updateDescriptionText('')
         closeModal()
     }
 
@@ -33,11 +38,11 @@ const AddTaskModal = (props) => {
         return (
             <div className={classes.modalBox}>
                 <div className={classes.modalContentBox}>
-                        <button onClick={closeModal} className={classes.closeModalButton}></button>
+                    <button onClick={onAddButtonClick} className={classes.addTaskButton}></button> 
+                    <button onClick={onCancelButtonClick} className={classes.cancelTaskButton}></button> 
                     <form>
-                        <input ref={input} placeholder='название..' value={props.inputText} onChange={updateInputText}/>
-                        <textarea ref={textarea} placeholder='описание..' value={props.textareaText} onChange={updateTextareaText} />
-                        <button className={classes.submitFormButton} onClick={addTask}>добавить</button>
+                        <textarea className={classes.header} ref={input} placeholder='Название..' value={props.headerText} onChange={updateHeaderText}/>
+                        <textarea className={classes.description} ref={textarea} placeholder='Описание..' value={props.descriptionText} onChange={updateDescriptionText} />
                    </form>
                 </div>
             </div>
@@ -47,10 +52,17 @@ const AddTaskModal = (props) => {
 const mapStateToProps = (state) => {
     return {
         addTaskModalActiveStatus: state.modals.addTaskModalActiveStatus,
-        inputText: state.modals.inputText,
-        textareaText: state.modals.textareaText,
+        headerText: state.modals.headerText,
+        descriptionText: state.modals.descriptionText,
     }
 }
 
-const AddTaskModalContainer = connect(mapStateToProps, { setAddTaskModalActiveStatus, updateInputText, updateTextareaText, addTask })(AddTaskModal)
+const AddTaskModalContainer = connect(mapStateToProps,
+    {
+        setAddTaskModalActiveStatus,
+        updateHeaderText,
+        updateDescriptionText,
+        addTask,
+        setOnCancelAddTaskModalActiveStatus
+    })(AddTaskModal)
 export { AddTaskModalContainer }

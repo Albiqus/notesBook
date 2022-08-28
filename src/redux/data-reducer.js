@@ -4,34 +4,31 @@ const REMOVE_TASK = 'REMOVE_TASK'
 const TOGGLE_FOCUS_TASK_ID = 'TOGGLE_FOCUS_TASK_ID'
 const SET_CURRENT_TASK = 'SET_CURRENT_TASK'
 const TOGGLE_FOCUS_DESCRIPTION = 'TOGGLE_FOCUS_DESCRIPTION'
+const EDIT_TASK = 'EDIT_TASK'
 
 const startState = {
     tasks: [
         {   
             id: 0,
             task: 'Уборка',
-            description: ['Подмести в коридоре, помыть полы, пропылесосить в квартире. Протереть пыль в коридоре на полках. Вынести мусор'],
-            description2: 'Подмести в коридоре, помыть полы, пропылесосить в квартире. Протереть пыль в коридоре на полках. Вынести мусор'
+            description: 'Подмести в коридоре, помыть полы, пропылесосить в квартире. Протереть пыль в коридоре на полках. Вынести мусор'
         },
 
         {
             id: 1,
              task: '12.04.2025',
-            description: ['12.04.2025 съездить в стоматологическую клинику по адресу ул.Пушкина, д.5'],
-             description2: '12.04.2025 съездить в стоматологическую клинику по адресу ул.Пушкина, д.5'
+             description: '12.04.2025 съездить в стоматологическую клинику по адресу ул.Пушкина, д.5'
         },
 
         {
             id: 2,
             task: 'подарки НГ',
-            description: ['Купить на новый год:', 'сын - конструктор,', 'жена - ирригатор,', 'родители - новый диван'],
-            description2: 'Купить на новый год:\nсын - конструктор,\nжена - ирригатор,\nродители - новый диван'
+            description: 'Купить на новый год:\nсын - конструктор,\nжена - ирригатор,\nродители - новый диван'
         },
         {
             id: 3,
             task: 'фильмы',
-            description: ['Терминатор', 'Агент Ева', 'Всё могу', 'Дьявол среди нас', 'Клаустрофобы: Квест В Москве', 'Секрет', 'Убийство по открыткам', 'Честный вор', 'Калашников', 'Суд над чикагской семьёй', 'Довод'],
-            description2: 'Терминатор\nАгент Ева\nВсё могу\nДьявол среди нас\nКлаустрофобы: Квест В Москве\nСекрет\nУбийство по открыткам\nЧестный вор\nКалашников\nСуд над чикагской семьёй\nДовод'
+            description: 'Терминатор\nАгент Ева\nВсё могу\nДьявол среди нас\nКлаустрофобы: Квест В Москве\nСекрет\nУбийство по открыткам\nЧестный вор\nКалашников\nСуд над чикагской семьёй\nДовод'
         },
     ],
     currentTaskId: 0,
@@ -53,14 +50,12 @@ export const listReducer = (state = startState, action) => {
                 currentTask: action.currentTask
             }
         case ADD_TASK:
-            const descriptionElements = action.description.split("\n")
             return {
                 ...state,
                 tasks: [...state.tasks, {
                     id: state.tasks.length,
                     task: action.task,
-                    description: descriptionElements,
-                    description2: action.description
+                    description: action.description,
                 }],
                 currentTaskId: state.tasks.length
             }
@@ -86,11 +81,25 @@ export const listReducer = (state = startState, action) => {
                 ...state,
                 focusDescription: action.focusDescription
             }
+        case EDIT_TASK:
+            const newTaskss = [...state.tasks].map(task => {
+                if (task.id !== action.id) {
+                    return task
+                } else {
+                    return {
+                        id: task.id,
+                        task: action.headerText,
+                        description: action.descriptionText
+                    }
+                }
+            })
+            return {
+                ...state,
+                tasks: newTaskss
+            }
         default:
             return state;
     }
-
-
 }
 
 
@@ -118,6 +127,11 @@ export const toggleFocusDescription = (focusDescription) => ({
     type: TOGGLE_FOCUS_DESCRIPTION,
     focusDescription
 })
-
+export const editTask = (id, headerText, descriptionText) => ({
+    type: EDIT_TASK,
+    id,
+    headerText,
+    descriptionText
+})
 
 

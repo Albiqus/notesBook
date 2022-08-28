@@ -10,17 +10,25 @@ z-index: 99999
     position: relative;
     margin-left: 200px;
     margin-top: 180px;
-    height: 150px;
+    height: 180px;
     width: 500px;
     background-color: rgb(122, 122, 122);
     outline: 2px solid rgb(0, 0, 0);
     border-radius: 12px;
 }
 
-.modalContentBox p{ 
+.warningText1{ 
 position: absolute;
 top: 10px;
-left: 30px;
+left: 60px;
+font-family: Georgia, serif;
+font-size: 17px;
+color: white;
+}
+.warningText2{ 
+position: absolute;
+top: 50px;
+left: 200px;
 font-family: Georgia, serif;
 font-size: 17px;
 color: white;

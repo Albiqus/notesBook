@@ -1,17 +1,19 @@
 import classes from './Descriptions.module.css';
 import { connect } from 'react-redux';
-import { setEditTaskModalActiveStatus, setRemoveTaskModalActiveStatus } from '../../redux/modals-reducer';
+import { setEditTaskModalActiveStatus, setOnRemoveTaskModalActiveStatus, updateDescriptionText, updateHeaderText } from '../../redux/modals-reducer';
 import { setCurrentTask, toggleFocusDescription } from '../../redux/data-reducer';
 
 const Descriptions = (props) => {
 
     const openRemoveModal = () => {
         props.setCurrentTask(props.tasks[props.currentTaskId].task)
-        props.setRemoveTaskModalActiveStatus(true)
+        props.setOnRemoveTaskModalActiveStatus(true)
     }
     
-    const openEditModal = () => {
+    const onEditButtonClick = () => {
         props.setEditTaskModalActiveStatus(true)
+        props.updateHeaderText(props.tasks[props.currentTaskId].task)
+        props.updateDescriptionText(props.tasks[props.currentTaskId].description)
     }
 
     const setFocusDescription = () => {
@@ -23,7 +25,7 @@ const Descriptions = (props) => {
     }
 
     if (props.currentTaskId !== null) {
-        const DescriptionTextElements = props.tasks[props.currentTaskId].description.map(textElement => <p className={classes.description}>{textElement}</p>)
+        const DescriptionTextElements = props.tasks[props.currentTaskId].description.split("\n").map(textElement => <p className={classes.description}>{textElement}</p>)
         return (
             <div onMouseEnter={setFocusDescription}
                 onMouseLeave={resetFocusDescription}
@@ -34,7 +36,7 @@ const Descriptions = (props) => {
                 </div>
                 {props.focusDescription === true &&
                 <div>
-                    <button onClick={openEditModal}className={classes.editButton}></button>
+                    <button onClick={onEditButtonClick}className={classes.editButton}></button>
                     <button onClick={openRemoveModal} className={classes.removeButton}></button>
                 </div>}
                 
@@ -57,6 +59,14 @@ const mapStateToProps = (state) => {
     }
 }
 
-const DescriptionsContainer = connect(mapStateToProps, { setRemoveTaskModalActiveStatus, setEditTaskModalActiveStatus, setCurrentTask, toggleFocusDescription })(Descriptions)
+const DescriptionsContainer = connect(mapStateToProps,
+    {
+        setOnRemoveTaskModalActiveStatus,
+        setEditTaskModalActiveStatus,
+        setCurrentTask,
+        toggleFocusDescription,
+        updateHeaderText,
+        updateDescriptionText
+    })(Descriptions)
 
 export { DescriptionsContainer }

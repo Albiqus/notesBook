@@ -2,7 +2,7 @@ import classes from './Tasks.module.css';
 import { connect } from 'react-redux';
 import { Task } from './Task/Task';
 import { setCurrentTaskId, toggleFocusTaskId, setCurrentTask } from '../../redux/data-reducer';
-import { setAddTaskModalActiveStatus, setRemoveTaskModalActiveStatus } from '../../redux/modals-reducer';
+import { setAddTaskModalActiveStatus, setOnRemoveTaskModalActiveStatus } from '../../redux/modals-reducer';
 
 const Tasks = (props) => {
     const taskElements = props.tasks.map(t => <Task
@@ -14,10 +14,10 @@ const Tasks = (props) => {
         key={t.id}
         toggleFocusTaskId={props.toggleFocusTaskId}
         focusTaskId={props.focusTaskId}
-        setRemoveTaskModalActiveStatus={props.setRemoveTaskModalActiveStatus}
+        setOnRemoveTaskModalActiveStatus={props.setOnRemoveTaskModalActiveStatus}
     />)
 
-    const openModal = () => {
+    const onButtonClick = () => {
         props.setAddTaskModalActiveStatus(true)
     }
     
@@ -25,14 +25,14 @@ const Tasks = (props) => {
         return (
             <div className={classes.tasksBox}>
                 <p>нет заметок</p>
-                <button onClick={openModal}></button>
+                <button onClick={onButtonClick}></button>
             </div>
         )
     }
     return (
     <div className={classes.tasksBox}>
             {taskElements}
-            <button onClick={openModal}></button>
+            <button onClick={onButtonClick}></button>
     </div>
 )
 }
@@ -45,6 +45,13 @@ const mapStateToProps = (state) => {
     }
 }
 
-const TasksContainer = connect(mapStateToProps, { setCurrentTaskId, setCurrentTask, setAddTaskModalActiveStatus, toggleFocusTaskId, setRemoveTaskModalActiveStatus })(Tasks)
+const TasksContainer = connect(mapStateToProps,
+    {
+        setCurrentTaskId,
+        setCurrentTask,
+        setAddTaskModalActiveStatus,
+        toggleFocusTaskId,
+        setOnRemoveTaskModalActiveStatus
+})(Tasks)
 
 export { TasksContainer }

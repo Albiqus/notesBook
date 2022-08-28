@@ -1,7 +1,6 @@
 .modalBox{
 height: 100vh;
 width: 100vw;
-background-color: rgba(0, 0, 0, 0.9);
 position: fixed;
 z-index: 99999
 }
@@ -10,14 +9,15 @@ z-index: 99999
     position: relative;
     margin-left: 400px;
     margin-top: 80px;
-    height: 700px;
-    width: 550px;
+    height: 696px;
+    width: 546px;
     background-color: rgb(122, 122, 122);
-    outline: 2px solid rgb(0, 0, 0);
+    border: 2px solid rgb(0, 0, 0);
     border-radius: 12px;
 }
 
-.modalContentBox input{
+.header{
+    font-weight: bold;
   position: absolute;
   left: 30px;
   right: 30px;
@@ -28,40 +28,60 @@ z-index: 99999
   font-size: 30px;
   box-sizing: border-box;
   margin: 0;
-  background-color: rgb(184, 184, 184);
+  background-color: rgb(90, 90, 90);
+  color: white;
   outline: none;
+  resize: none;
 }
-.modalContentBox textarea{
+.description{
   position: absolute;
   left: 30px;
-  top: 80px;
+  top: 90px;
   width: 490px;;
-  height: 520px;
+  height: 495px;
   font-family: Georgia, serif;
   font-size: 20px;
-  line-height:  1.5;
+  line-height:  1.2;
   box-sizing: border-box;
   margin: 0;
-  background-color: rgb(184, 184, 184);
+  background-color: rgb(90, 90, 90);
+  color: white;
   outline: none;
   resize: none;
 }
 
-.submitFormButton {
-position: absolute;
-bottom: 25px;
-left: 30px;
-width: 490px;
-height: 40px;
-font-family: Georgia, serif;
-font-size: 20px;
-background-color: rgb(184, 184, 184);
-border: none;
-cursor: pointer;
+.cancelTaskButton {
+    position: absolute;
+    right: 180px;
+    bottom: 30px;
+    height: 60px;
+    width: 60px;
+    border-radius: 30px;
+    border: none;
+    background-image: url("../../../../public/img/cancel-edit-task-button.png");
+    background-color: rgb(90, 90, 90);
+    cursor: pointer;
 }
 
-.submitFormButton:hover {
-    color: white
+.cancelTaskButton:hover{
+outline: 2px solid rgb(192, 192, 192);
+}
+
+.addTaskButton {
+    position: absolute;
+    left: 180px;
+    bottom: 30px;
+    height: 60px;
+    width: 60px;
+    border-radius: 30px;
+    border: none;
+    background-image: url("../../../../public/img/add-edit-task-button.png");
+    background-color: rgb(90, 90, 90);
+    cursor: pointer;
+}
+
+.addTaskButton:hover{
+outline: 2px solid rgb(192, 192, 192);
 }
 
 .closeModalButton {

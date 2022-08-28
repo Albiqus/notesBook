@@ -1,29 +1,47 @@
 import classes from './EditTaskModalContainer.module.css';
 import { connect } from 'react-redux';
-import { setCurrentTaskHeader, setCurrentTaskText, setEditTaskModalActiveStatus, updateInputText, updateTextareaText } from '../../../redux/modals-reducer';
-import { addTask } from '../../../redux/data-reducer';
+import { setEditTaskModalActiveStatus, updateHeaderText, updateDescriptionText, setOnCancelEditTaskModalActiveStatus } from '../../../redux/modals-reducer';
 import React from 'react';
+import { editTask } from '../../../redux/data-reducer';
 
 const EditTaskModal = (props) => {
+    const header = React.createRef()
+    const description = React.createRef()
+
     const closeModal = () => {
         props.setEditTaskModalActiveStatus(false)
+        props.updateHeaderText('')
+        props.updateDescriptionText('')
+    }
+    
+    const onAddButtonClick = () => {
+        props.editTask(props.currentTaskId, header.current.value, description.current.value)
+        closeModal()
+    }
+    
+    const onCancelButtonClick = () => {
+        header.current.value === props.tasks[props.currentTaskId].task && description.current.value === props.tasks[props.currentTaskId].description
+        ? closeModal()
+        : props.setOnCancelEditTaskModalActiveStatus(true)
     }
 
-    const input = React.createRef()
-    const textarea = React.createRef()
+    const onHeaderTextChange = (e) => {
+    props.updateHeaderText(e.target.value)
+    }
 
+    const onDescriptionTextChange = (e) => {
+    props.updateDescriptionText(e.target.value)
+    }
 
     if (props.editTaskModalActiveStatus) {
-        props.setCurrentTaskText(props.tasks[props.currentTaskId].description2)
-        props.setCurrentTaskHeader(props.tasks[props.currentTaskId].task)
         return (
             <div className={classes.modalBox}>
                 <div className={classes.modalContentBox}>
-                    <button onClick={closeModal} className={classes.cancelEditButton}></button> 
-                    <button onClick={closeModal} className={classes.addEditButton}></button> 
+                    <button onClick={onAddButtonClick} className={classes.addEditButton}></button> 
+                    <button onClick={onCancelButtonClick} className={classes.cancelEditButton}></button> 
                     <form>
-                        <textarea className={classes.header} ref={input} value={props.currentTaskHeader} onChange={updateInputText}/>
-                        <textarea className={classes.description} ref={textarea} value={props.currentTaskText} onChange={updateTextareaText} />
+                        <textarea className={classes.header} ref={header} value={props.headerText} onChange={onHeaderTextChange}/>
+                        <textarea className={classes.description} ref={description} value={props.descriptionText} onChange={onDescriptionTextChange} />
                    </form>
                 </div>
             </div>
@@ -36,18 +54,17 @@ const mapStateToProps = (state) => {
         editTaskModalActiveStatus: state.modals.editTaskModalActiveStatus,
         currentTaskId: state.data.currentTaskId,
         tasks: state.data.tasks,
-        currentTaskText: state.modals.currentTaskText,
-        currentTaskHeader: state.modals.currentTaskHeader
+        headerText: state.modals.headerText,
+        descriptionText: state.modals.descriptionText
     }
 }
 
 const EditTaskModalContainer = connect(mapStateToProps,
     {
         setEditTaskModalActiveStatus,
-        updateInputText,
-        updateTextareaText,
-        addTask,
-        setCurrentTaskText,
-        setCurrentTaskHeader
+        updateHeaderText,
+        updateDescriptionText,
+        editTask,
+        setOnCancelEditTaskModalActiveStatus
     })(EditTaskModal)
 export { EditTaskModalContainer }
