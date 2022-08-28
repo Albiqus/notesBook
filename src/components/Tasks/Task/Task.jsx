@@ -16,7 +16,7 @@ const Task = (props) => {
     }
     
     const openModal = () => {
-        props.setOnRemoveNodeModalStatus(true)
+        props.setOnRemoveNoteModalStatus(true)
     }
 
     return (

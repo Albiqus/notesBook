@@ -2,11 +2,11 @@ import classes from './RemoveTaskModalContainer.module.css';
 import { connect } from 'react-redux';
 import React from 'react';
 import { removeTask } from '../../../redux/data-reducer';
-import { setOnRemoveNodeModalStatus } from '../../../redux/modals-reducer';
+import { setOnRemoveNoteModalStatus } from '../../../redux/modals-reducer';
 
 const RemoveTaskModal = (props) => {
     const closeModal = () => {
-        props.setOnRemoveNodeModalStatus(false)
+        props.setOnRemoveNoteModalStatus(false)
     }
 
     const onButtonYesClick = () => {
@@ -18,7 +18,7 @@ const RemoveTaskModal = (props) => {
         closeModal()
     }
 
-    if (props.removeNodeModalStatus) {
+    if (props.removeNoteModalStatus) {
         return (
             <div className={classes.modalBox}>
                 <div className={classes.modalContentBox}>
@@ -32,11 +32,11 @@ const RemoveTaskModal = (props) => {
 }
 const mapStateToProps = (state) => {
     return {
-        removeNodeModalStatus: state.modals.removeNodeModalStatus,
+        removeNoteModalStatus: state.modals.removeNoteModalStatus,
         currentTask: state.data.currentTask,
         currentTaskId: state.data.currentTaskId,
     }
 }
 
-const RemoveTaskModalContainer = connect(mapStateToProps, { removeTask, setOnRemoveNodeModalStatus })(RemoveTaskModal)
+const RemoveTaskModalContainer = connect(mapStateToProps, { removeTask, setOnRemoveNoteModalStatus })(RemoveTaskModal)
 export { RemoveTaskModalContainer }

@@ -1,13 +1,13 @@
 import classes from './AddTaskModalContainer.module.css';
 import { connect } from 'react-redux';
-import { updateHeaderText, updateDescriptionText, setOnAddNodeModalStatus, setOnCancelAddNodeModalStatus } from '../../../redux/modals-reducer';
+import { updateHeaderText, updateDescriptionText, setOnAddNoteModalStatus, setOnCancelAddNoteModalStatus } from '../../../redux/modals-reducer';
 import { addTask } from '../../../redux/data-reducer';
 import React from 'react';
 
 const AddTaskModal = (props) => {
 
     const closeModal = () => {
-        props.setOnAddNodeModalStatus(false)
+        props.setOnAddNoteModalStatus(false)
     }
     
     const updateHeaderText = (e) => {
@@ -24,7 +24,7 @@ const AddTaskModal = (props) => {
     const onCancelButtonClick = () => {
         input.current.value === '' && textarea.current.value === ''
             ? closeModal()
-            : props.setOnCancelAddNodeModalStatus(true)
+            : props.setOnCancelAddNoteModalStatus(true)
     }
     const onAddButtonClick = (e) => {
         e.preventDefault()
@@ -34,7 +34,7 @@ const AddTaskModal = (props) => {
         closeModal()
     }
 
-    if (props.addNodeModalStatus) {
+    if (props.addNoteModalStatus) {
         return (
             <div className={classes.modalBox}>
                 <div className={classes.modalContentBox}>
@@ -51,7 +51,7 @@ const AddTaskModal = (props) => {
 }
 const mapStateToProps = (state) => {
     return {
-        addNodeModalStatus: state.modals.addNodeModalStatus,
+        addNoteModalStatus: state.modals.addNoteModalStatus,
         headerText: state.modals.headerText,
         descriptionText: state.modals.descriptionText,
     }
@@ -59,10 +59,10 @@ const mapStateToProps = (state) => {
 
 const AddTaskModalContainer = connect(mapStateToProps,
     {
-        setOnAddNodeModalStatus,
+        setOnAddNoteModalStatus,
         updateHeaderText,
         updateDescriptionText,
         addTask,
-        setOnCancelAddNodeModalStatus
+        setOnCancelAddNoteModalStatus
     })(AddTaskModal)
 export { AddTaskModalContainer }
