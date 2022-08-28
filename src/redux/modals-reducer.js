@@ -1,47 +1,47 @@
-const SET_ADD_TASK_MODAL_ACTIVE_STATUS = 'SET_ADD_TASK_MODAL_ACTIVE_STATUS';
-const SET_EDIT_TASK_MODAL_ACTIVE_STATUS = 'SET_EDIT_TASK_MODAL_ACTIVE_STATUS'
-const SET_ON_REMOVE_TASK_MODAL_ACTIVE_STATUS = 'SET_ON_REMOVE_TASK_MODAL_ACTIVE_STATUS';
-const SET_ON_CANCEL_ADD_TASK_MODAL_ACTIVE_STATUS = 'SET_ON_CANCEL_ADD_TASK_MODAL_ACTIVE_STATUS';
-const SET_ON_CANCEL_EDIT_TASK_MODAL_ACTIVE_STATUS = 'SET_ON_CANCEL_EDIT_TASK_MODAL_ACTIVE_STATUS'
+const SET_ON_ADD_NODE_MODAL_STATUS = 'SET_ON_ADD_NODE_MODAL_STATUS';
+const SET_ON_EDIT_NODE_MODAL_STATUS = 'SET_ON_EDIT_NODE_MODAL_STATUS'
+const SET_ON_REMOVE_NODE_MODAL_STATUS = 'SET_ON_REMOVE_NODE_MODAL_STATUS';
+const SET_ON_CANCEL_ADD_NODE_MODAL_STATUS = 'SET_ON_CANCEL_ADD_NODE_MODAL_STATUS';
+const SET_ON_CANCEL_EDIT_NODE_MODAL_STATUS = 'SET_ON_CANCEL_EDIT_NODE_MODAL_STATUS'
 const UPDATE_HEADER_TEXT = 'UPDATE_INPUT_TEXT';
 const UPDATE_DESCRIPTION_TEXT = 'UPDATE_TEXTAREA_TEXT';
 
 const startState = {
-    addTaskModalActiveStatus: false,
-    editTaskModalActiveStatus: false,
-    onRemoveTaskModalActiveStatus: false,
-    onCancelAddTaskModalActiveStatus: false,
-    onCancelEditTaskModalActiveStatus: false,
+    addNodeModalStatus: false,
+    editNodeModalStatus: false,
+    removeNodeModalStatus: false,
+    cancelAddNodeModalStatus: false,
+    cancelEditNodeModalStatus: false,
     headerText: '',
     descriptionText: '',
 }
 
 export const modalsReducer = (state = startState, action) => {
     switch (action.type) {
-        case SET_ADD_TASK_MODAL_ACTIVE_STATUS:
+        case SET_ON_ADD_NODE_MODAL_STATUS:
             return {
                 ...state,
-                addTaskModalActiveStatus: action.status
+                addNodeModalStatus: action.status
             }
-        case SET_EDIT_TASK_MODAL_ACTIVE_STATUS:
+        case SET_ON_EDIT_NODE_MODAL_STATUS:
             return {
                 ...state,
-                editTaskModalActiveStatus: action.status
+                editNodeModalStatus: action.status
             }
-        case SET_ON_REMOVE_TASK_MODAL_ACTIVE_STATUS:
+        case SET_ON_REMOVE_NODE_MODAL_STATUS:
             return {
                 ...state,
-                onRemoveTaskModalActiveStatus: action.status
+                removeNodeModalStatus: action.status
             }
-        case SET_ON_CANCEL_ADD_TASK_MODAL_ACTIVE_STATUS:
+        case SET_ON_CANCEL_ADD_NODE_MODAL_STATUS:
              return {
                  ...state,
-                 onCancelAddTaskModalActiveStatus: action.status
+                 cancelAddNodeModalStatus: action.status
             }
-        case SET_ON_CANCEL_EDIT_TASK_MODAL_ACTIVE_STATUS:
+        case SET_ON_CANCEL_EDIT_NODE_MODAL_STATUS:
             return {
                 ...state,
-                onCancelEditTaskModalActiveStatus: action.status
+                cancelEditNodeModalStatus: action.status
             }
         case UPDATE_HEADER_TEXT:
             return {
@@ -59,28 +59,28 @@ export const modalsReducer = (state = startState, action) => {
 }
 
 
-export const setAddTaskModalActiveStatus = (status) => ({
-    type: SET_ADD_TASK_MODAL_ACTIVE_STATUS,
+export const setOnAddNodeModalStatus = (status) => ({
+    type: SET_ON_ADD_NODE_MODAL_STATUS,
     status
 })
 
-export const setEditTaskModalActiveStatus = (status) => ({
-    type: SET_EDIT_TASK_MODAL_ACTIVE_STATUS,
+export const setOnEditNodeModalStatus = (status) => ({
+    type: SET_ON_EDIT_NODE_MODAL_STATUS,
     status
 })
 
-export const setOnRemoveTaskModalActiveStatus = (status) => ({
-    type: SET_ON_REMOVE_TASK_MODAL_ACTIVE_STATUS,
+export const setOnRemoveNodeModalStatus = (status) => ({
+    type: SET_ON_REMOVE_NODE_MODAL_STATUS,
     status
 })
 
-export const setOnCancelAddTaskModalActiveStatus = (status) => ({
-    type: SET_ON_CANCEL_ADD_TASK_MODAL_ACTIVE_STATUS,
+export const setOnCancelAddNodeModalStatus = (status) => ({
+    type: SET_ON_CANCEL_ADD_NODE_MODAL_STATUS,
     status
 })
 
-export const setOnCancelEditTaskModalActiveStatus = (status) => ({
-    type: SET_ON_CANCEL_EDIT_TASK_MODAL_ACTIVE_STATUS,
+export const setOnCancelEditNodeModalStatus = (status) => ({
+    type: SET_ON_CANCEL_EDIT_NODE_MODAL_STATUS,
     status
 })
 

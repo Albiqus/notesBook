@@ -2,7 +2,7 @@ import classes from './Tasks.module.css';
 import { connect } from 'react-redux';
 import { Task } from './Task/Task';
 import { setCurrentTaskId, toggleFocusTaskId, setCurrentTask } from '../../redux/data-reducer';
-import { setAddTaskModalActiveStatus, setOnRemoveTaskModalActiveStatus } from '../../redux/modals-reducer';
+import { setOnAddNodeModalStatus, setOnRemoveNodeModalStatus } from '../../redux/modals-reducer';
 
 const Tasks = (props) => {
     const taskElements = props.tasks.map(t => <Task
@@ -14,11 +14,11 @@ const Tasks = (props) => {
         key={t.id}
         toggleFocusTaskId={props.toggleFocusTaskId}
         focusTaskId={props.focusTaskId}
-        setOnRemoveTaskModalActiveStatus={props.setOnRemoveTaskModalActiveStatus}
+        setOnRemoveNodeModalStatus={props.setOnRemoveNodeModalStatus}
     />)
 
     const onButtonClick = () => {
-        props.setAddTaskModalActiveStatus(true)
+        props.setOnAddNodeModalStatus(true)
     }
     
     if (props.tasks.length === 0) {
@@ -49,9 +49,9 @@ const TasksContainer = connect(mapStateToProps,
     {
         setCurrentTaskId,
         setCurrentTask,
-        setAddTaskModalActiveStatus,
+        setOnAddNodeModalStatus,
         toggleFocusTaskId,
-        setOnRemoveTaskModalActiveStatus
+        setOnRemoveNodeModalStatus
 })(Tasks)
 
 export { TasksContainer }

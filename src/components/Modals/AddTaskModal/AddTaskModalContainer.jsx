@@ -1,13 +1,13 @@
 import classes from './AddTaskModalContainer.module.css';
 import { connect } from 'react-redux';
-import { setAddTaskModalActiveStatus, updateHeaderText, updateDescriptionText, setOnCancelAddTaskModalActiveStatus } from '../../../redux/modals-reducer';
+import { updateHeaderText, updateDescriptionText, setOnAddNodeModalStatus, setOnCancelAddNodeModalStatus } from '../../../redux/modals-reducer';
 import { addTask } from '../../../redux/data-reducer';
 import React from 'react';
 
 const AddTaskModal = (props) => {
 
     const closeModal = () => {
-        props.setAddTaskModalActiveStatus(false)
+        props.setOnAddNodeModalStatus(false)
     }
     
     const updateHeaderText = (e) => {
@@ -24,7 +24,7 @@ const AddTaskModal = (props) => {
     const onCancelButtonClick = () => {
         input.current.value === '' && textarea.current.value === ''
             ? closeModal()
-            : props.setOnCancelAddTaskModalActiveStatus(true)
+            : props.setOnCancelAddNodeModalStatus(true)
     }
     const onAddButtonClick = (e) => {
         e.preventDefault()
@@ -34,7 +34,7 @@ const AddTaskModal = (props) => {
         closeModal()
     }
 
-    if (props.addTaskModalActiveStatus) {
+    if (props.addNodeModalStatus) {
         return (
             <div className={classes.modalBox}>
                 <div className={classes.modalContentBox}>
@@ -51,7 +51,7 @@ const AddTaskModal = (props) => {
 }
 const mapStateToProps = (state) => {
     return {
-        addTaskModalActiveStatus: state.modals.addTaskModalActiveStatus,
+        addNodeModalStatus: state.modals.addNodeModalStatus,
         headerText: state.modals.headerText,
         descriptionText: state.modals.descriptionText,
     }
@@ -59,10 +59,10 @@ const mapStateToProps = (state) => {
 
 const AddTaskModalContainer = connect(mapStateToProps,
     {
-        setAddTaskModalActiveStatus,
+        setOnAddNodeModalStatus,
         updateHeaderText,
         updateDescriptionText,
         addTask,
-        setOnCancelAddTaskModalActiveStatus
+        setOnCancelAddNodeModalStatus
     })(AddTaskModal)
 export { AddTaskModalContainer }

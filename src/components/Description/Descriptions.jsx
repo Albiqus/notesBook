@@ -1,17 +1,17 @@
 import classes from './Descriptions.module.css';
 import { connect } from 'react-redux';
-import { setEditTaskModalActiveStatus, setOnRemoveTaskModalActiveStatus, updateDescriptionText, updateHeaderText } from '../../redux/modals-reducer';
+import { setOnEditNodeModalStatus, setOnRemoveNodeModalStatus, updateDescriptionText, updateHeaderText } from '../../redux/modals-reducer';
 import { setCurrentTask, toggleFocusDescription } from '../../redux/data-reducer';
 
 const Descriptions = (props) => {
 
     const openRemoveModal = () => {
         props.setCurrentTask(props.tasks[props.currentTaskId].task)
-        props.setOnRemoveTaskModalActiveStatus(true)
+        props.setOnRemoveNodeModalStatus(true)
     }
     
     const onEditButtonClick = () => {
-        props.setEditTaskModalActiveStatus(true)
+        props.setOnEditNodeModalStatus(true)
         props.updateHeaderText(props.tasks[props.currentTaskId].task)
         props.updateDescriptionText(props.tasks[props.currentTaskId].description)
     }
@@ -61,8 +61,8 @@ const mapStateToProps = (state) => {
 
 const DescriptionsContainer = connect(mapStateToProps,
     {
-        setOnRemoveTaskModalActiveStatus,
-        setEditTaskModalActiveStatus,
+        setOnRemoveNodeModalStatus,
+        setOnEditNodeModalStatus,
         setCurrentTask,
         toggleFocusDescription,
         updateHeaderText,

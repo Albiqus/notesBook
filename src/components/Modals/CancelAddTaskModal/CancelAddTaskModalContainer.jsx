@@ -1,16 +1,16 @@
 import classes from './CancelAddTaskModalContainer.module.css';
 import { connect } from 'react-redux';
 import React from 'react';
-import { setAddTaskModalActiveStatus, setOnCancelAddTaskModalActiveStatus, updateDescriptionText, updateHeaderText} from '../../../redux/modals-reducer';
+import { setOnAddNodeModalStatus, setOnCancelAddNodeModalStatus, updateDescriptionText, updateHeaderText} from '../../../redux/modals-reducer';
 
 const CancelAddTaskModal = (props) => {
     const closeModal = () => {
-        props.setOnCancelAddTaskModalActiveStatus(false)
+        props.setOnCancelAddNodeModalStatus(false)
     }
 
     const onButtonYesClick = () => {
         closeModal()
-        props.setAddTaskModalActiveStatus(false)
+        props.setOnAddNodeModalStatus(false)
         props.updateHeaderText('')
         props.updateDescriptionText('')
     }
@@ -19,7 +19,7 @@ const CancelAddTaskModal = (props) => {
         closeModal()
     }
     
-    if (props.onCancelAddTaskModalActiveStatus) {
+    if (props.cancelAddNodeModalStatus) {
         return (
             <div className={classes.modalBox}>
                 <div className={classes.modalContentBox}>
@@ -34,14 +34,14 @@ const CancelAddTaskModal = (props) => {
 }
 const mapStateToProps = (state) => {
     return {
-        onCancelAddTaskModalActiveStatus: state.modals.onCancelAddTaskModalActiveStatus,
+        cancelAddNodeModalStatus: state.modals.cancelAddNodeModalStatus,
     }
 }
 
 const CancelAddTaskModalContainer = connect(mapStateToProps,
     {
-        setOnCancelAddTaskModalActiveStatus,
-        setAddTaskModalActiveStatus,
+        setOnCancelAddNodeModalStatus,
+        setOnAddNodeModalStatus,
         updateHeaderText,
         updateDescriptionText
     })(CancelAddTaskModal)

@@ -1,6 +1,6 @@
 import classes from './EditTaskModalContainer.module.css';
 import { connect } from 'react-redux';
-import { setEditTaskModalActiveStatus, updateHeaderText, updateDescriptionText, setOnCancelEditTaskModalActiveStatus } from '../../../redux/modals-reducer';
+import { updateHeaderText, updateDescriptionText, setOnEditNodeModalStatus, setOnCancelEditNodeModalStatus } from '../../../redux/modals-reducer';
 import React from 'react';
 import { editTask } from '../../../redux/data-reducer';
 
@@ -9,7 +9,7 @@ const EditTaskModal = (props) => {
     const description = React.createRef()
 
     const closeModal = () => {
-        props.setEditTaskModalActiveStatus(false)
+        props.setOnEditNodeModalStatus(false)
         props.updateHeaderText('')
         props.updateDescriptionText('')
     }
@@ -22,7 +22,7 @@ const EditTaskModal = (props) => {
     const onCancelButtonClick = () => {
         header.current.value === props.tasks[props.currentTaskId].task && description.current.value === props.tasks[props.currentTaskId].description
         ? closeModal()
-        : props.setOnCancelEditTaskModalActiveStatus(true)
+        : props.setOnCancelEditNodeModalStatus(true)
     }
 
     const onHeaderTextChange = (e) => {
@@ -33,7 +33,7 @@ const EditTaskModal = (props) => {
     props.updateDescriptionText(e.target.value)
     }
 
-    if (props.editTaskModalActiveStatus) {
+    if (props.editNodeModalStatus) {
         return (
             <div className={classes.modalBox}>
                 <div className={classes.modalContentBox}>
@@ -51,7 +51,7 @@ const EditTaskModal = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        editTaskModalActiveStatus: state.modals.editTaskModalActiveStatus,
+        editNodeModalStatus: state.modals.editNodeModalStatus,
         currentTaskId: state.data.currentTaskId,
         tasks: state.data.tasks,
         headerText: state.modals.headerText,
@@ -61,10 +61,10 @@ const mapStateToProps = (state) => {
 
 const EditTaskModalContainer = connect(mapStateToProps,
     {
-        setEditTaskModalActiveStatus,
+        setOnEditNodeModalStatus,
         updateHeaderText,
         updateDescriptionText,
         editTask,
-        setOnCancelEditTaskModalActiveStatus
+        setOnCancelEditNodeModalStatus
     })(EditTaskModal)
 export { EditTaskModalContainer }

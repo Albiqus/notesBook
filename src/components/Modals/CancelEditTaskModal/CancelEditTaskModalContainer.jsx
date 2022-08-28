@@ -1,23 +1,23 @@
 import classes from './CancelEditTaskModalContainer.module.css';
 import { connect } from 'react-redux';
 import React from 'react';
-import { setEditTaskModalActiveStatus, setOnCancelEditTaskModalActiveStatus } from '../../../redux/modals-reducer';
+import { setOnCancelEditNodeModalStatus, setOnEditNodeModalStatus } from '../../../redux/modals-reducer';
 
 const CancelEditTaskModal = (props) => {
     const closeModal = () => {
-        props.setOnCancelEditTaskModalActiveStatus(false)
+        props.setOnCancelEditNodeModalStatus(false)
     }
 
     const onButtonYesClick = () => {
         closeModal()
-        props.setEditTaskModalActiveStatus(false)
+        props.setOnEditNodeModalStatus(false)
     }
 
     const onButtonNoClick = () => {
         closeModal()
     }
     
-    if (props.onCancelEditTaskModalActiveStatus) {
+    if (props.cancelEditNodeModalStatus) {
         return (
             <div className={classes.modalBox}>
                 <div className={classes.modalContentBox}>
@@ -31,13 +31,13 @@ const CancelEditTaskModal = (props) => {
 }
 const mapStateToProps = (state) => {
     return {
-        onCancelEditTaskModalActiveStatus: state.modals.onCancelEditTaskModalActiveStatus,
+        cancelEditNodeModalStatus: state.modals.cancelEditNodeModalStatus,
     }
 }
 
 const CancelEditTaskModalContainer = connect(mapStateToProps,
     {
-        setOnCancelEditTaskModalActiveStatus,
-        setEditTaskModalActiveStatus
+        setOnCancelEditNodeModalStatus,
+        setOnEditNodeModalStatus
     })(CancelEditTaskModal)
 export { CancelEditTaskModalContainer }
