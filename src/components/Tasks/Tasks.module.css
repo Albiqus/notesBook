@@ -5,8 +5,12 @@
     position: relative;
 }
 
+.taskElementsBox {
+margin-top: 75px;
+}
+
 .tasksBox button {
-    background-image: url("../../../public/img/add-task-button.png");
+    background-image: url("../../../public/img/list/add-task-button.png");
     border: none;
     position: absolute;
     background-color: rgb(122, 122, 122);
@@ -23,10 +27,21 @@
 }
 
 .tasksBox p {
-    color: white;
+color: white;
 position: absolute;
-left: 65px;
+left: 40px;
 top: 7px;
 font-family: Georgia, serif;
 font-size: 20px;
+}
+
+.tasksBox textarea{
+    background-color: rgb(122, 122, 122);
+    position: absolute;
+    left: 20px;
+    right: 50px;
+    top: 20px;
+    height: 30px;
+    resize: none;
+    border-radius: 10px;
 }

@@ -1,44 +1,41 @@
 import classes from './Descriptions.module.css';
 import { connect } from 'react-redux';
 import { setOnEditNoteModalStatus, setOnRemoveNoteModalStatus, updateDescriptionText, updateHeaderText } from '../../redux/modals-reducer';
-import { setCurrentTask, toggleFocusDescription } from '../../redux/data-reducer';
+import { setCurrentTask, setFavoriteStatus } from '../../redux/data-reducer';
 
 const Descriptions = (props) => {
 
-    const openRemoveModal = () => {
-        props.setCurrentTask(props.tasks[props.currentTaskId].task)
-        props.setOnRemoveNoteModalStatus(true)
-    }
-    
     const onEditButtonClick = () => {
         props.setOnEditNoteModalStatus(true)
         props.updateHeaderText(props.tasks[props.currentTaskId].task)
         props.updateDescriptionText(props.tasks[props.currentTaskId].description)
     }
 
-    const setFocusDescription = () => {
-        props.toggleFocusDescription(true)
+    const onRemoveButtonClick = () => {
+        props.setCurrentTask(props.tasks[props.currentTaskId].task)
+        props.setOnRemoveNoteModalStatus(true)
+    }
+    
+    const onFavoriteButtonClick = () => {
+        props.tasks[props.currentTaskId].favoriteStatus
+        ? props.setFavoriteStatus(false, props.currentTaskId)
+        : props.setFavoriteStatus(true, props.currentTaskId)
     }
 
-    const resetFocusDescription = () => {
-        props.toggleFocusDescription(false)
-    }
 
     if (props.currentTaskId !== null) {
         const DescriptionTextElements = props.tasks[props.currentTaskId].description.split("\n").map(textElement => <p className={classes.description}>{textElement}</p>)
         return (
-            <div onMouseEnter={setFocusDescription}
-                onMouseLeave={resetFocusDescription}
-                className={classes.descriptionBox} >
+            <div className={classes.descriptionBox}>
                 <p className={classes.header}>{props.tasks[props.currentTaskId].task}</p>
                 <div className={classes.descriptionText}>
                     {DescriptionTextElements}
                 </div>
-                {props.focusDescription === true &&
                 <div>
                     <button onClick={onEditButtonClick}className={classes.editButton}></button>
-                    <button onClick={openRemoveModal} className={classes.removeButton}></button>
-                </div>}
+                    <button onClick={onRemoveButtonClick} className={classes.removeButton}></button>
+                    <button onClick={onFavoriteButtonClick} className={props.tasks[props.currentTaskId].favoriteStatus ? classes.favoriteButtonPressed : classes.favoriteButton}></button>
+                </div>
                 
             </div>
         )
@@ -64,9 +61,9 @@ const DescriptionsContainer = connect(mapStateToProps,
         setOnRemoveNoteModalStatus,
         setOnEditNoteModalStatus,
         setCurrentTask,
-        toggleFocusDescription,
         updateHeaderText,
-        updateDescriptionText
+        updateDescriptionText,
+        setFavoriteStatus
     })(Descriptions)
 
 export { DescriptionsContainer }

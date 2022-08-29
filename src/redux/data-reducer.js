@@ -3,39 +3,44 @@ const ADD_TASK = 'ADD_TASK'
 const REMOVE_TASK = 'REMOVE_TASK'
 const TOGGLE_FOCUS_TASK_ID = 'TOGGLE_FOCUS_TASK_ID'
 const SET_CURRENT_TASK = 'SET_CURRENT_TASK'
-const TOGGLE_FOCUS_DESCRIPTION = 'TOGGLE_FOCUS_DESCRIPTION'
 const EDIT_TASK = 'EDIT_TASK'
+const SET_FAVORITE_STATUS = 'SET_FAVORITE_STATUS'
 
 const startState = {
     tasks: [
         {   
             id: 0,
             task: 'Уборка',
-            description: 'Подмести в коридоре, помыть полы, пропылесосить в квартире. Протереть пыль в коридоре на полках. Вынести мусор'
+            description: 'Подмести в коридоре, помыть полы, пропылесосить в квартире. Протереть пыль в коридоре на полках. Вынести мусор',
+            favoriteStatus: false
         },
 
         {
             id: 1,
-             task: '12.04.2025',
-             description: '12.04.2025 съездить в стоматологическую клинику по адресу ул.Пушкина, д.5'
+            task: '12.04.2025',
+            description: '12.04.2025 съездить в стоматологическую клинику по адресу ул.Пушкина, д.5',
+            favoriteStatus: false
         },
 
         {
             id: 2,
             task: 'подарки НГ',
-            description: 'Купить на новый год:\nсын - конструктор,\nжена - ирригатор,\nродители - новый диван'
+            description: 'Купить на новый год:\nсын - конструктор,\nжена - ирригатор,\nродители - новый диван',
+            favoriteStatus: true
         },
         {
             id: 3,
             task: 'фильмы',
-            description: 'Терминатор\nАгент Ева\nВсё могу\nДьявол среди нас\nКлаустрофобы: Квест В Москве\nСекрет\nУбийство по открыткам\nЧестный вор\nКалашников\nСуд над чикагской семьёй\nДовод'
+            description: 'Терминатор\nАгент Ева\nВсё могу\nДьявол среди нас\nКлаустрофобы: Квест В Москве\nСекрет\nУбийство по открыткам\nЧестный вор\nКалашников\nСуд над чикагской семьёй\nДовод',
+            favoriteStatus: false
         },
     ],
     currentTaskId: 0,
     currentTask: null,
     focusTaskId: null,
-    focusDescription: null
 }
+
+let newTasks;
 
 export const listReducer = (state = startState, action) => {
     switch (action.type) {
@@ -56,11 +61,12 @@ export const listReducer = (state = startState, action) => {
                     id: state.tasks.length,
                     task: action.task,
                     description: action.description,
+                    isFavorite: false
                 }],
                 currentTaskId: state.tasks.length
             }
         case REMOVE_TASK:
-            let newTasks = [...state.tasks].filter(task => task.id !== action.taskId);
+            newTasks = [...state.tasks].filter(task => task.id !== action.taskId);
             for (let i = 0; i < newTasks.length; i++){
                 newTasks[i].id = i
             }
@@ -76,27 +82,40 @@ export const listReducer = (state = startState, action) => {
                  ...state,
                  focusTaskId: action.focusTaskId
             }
-        case TOGGLE_FOCUS_DESCRIPTION:
-            return {
-                ...state,
-                focusDescription: action.focusDescription
-            }
         case EDIT_TASK:
-            const newTaskss = [...state.tasks].map(task => {
+            newTasks = [...state.tasks].map(task => {
                 if (task.id !== action.id) {
                     return task
                 } else {
                     return {
                         id: task.id,
                         task: action.headerText,
-                        description: action.descriptionText
+                        description: action.descriptionText,
+                        favoriteStatus: task.favoriteStatus
                     }
                 }
             })
             return {
                 ...state,
-                tasks: newTaskss
+                tasks: newTasks
             }
+        case SET_FAVORITE_STATUS:
+            newTasks = [...state.tasks].map(task => {
+                 if (task.id !== action.id) {
+                     return task
+                 } else {
+                     return {
+                         id: task.id,
+                         task: task.task,
+                         description: task.description,
+                         favoriteStatus: action.status
+                     }
+                 }
+            })
+             return {
+                 ...state,
+                 tasks: newTasks
+             }
         default:
             return state;
     }
@@ -123,15 +142,16 @@ export const toggleFocusTaskId = (focusTaskId) => ({
     type: TOGGLE_FOCUS_TASK_ID,
     focusTaskId
 })
-export const toggleFocusDescription = (focusDescription) => ({
-    type: TOGGLE_FOCUS_DESCRIPTION,
-    focusDescription
-})
+
 export const editTask = (id, headerText, descriptionText) => ({
     type: EDIT_TASK,
     id,
     headerText,
     descriptionText
 })
-
+export const setFavoriteStatus = (status, id) => ({
+    type: SET_FAVORITE_STATUS,
+    status,
+    id
+})
 

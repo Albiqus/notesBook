@@ -9,7 +9,7 @@ import { CancelAddTaskModalContainer } from './components/Modals/CancelAddTaskMo
 import { CancelEditTaskModalContainer } from './components/Modals/CancelEditTaskModal/CancelEditTaskModalContainer';
 
 
-function App() {н
+function App() {
   return (
       <div className="App">
               <AddTaskModalContainer />

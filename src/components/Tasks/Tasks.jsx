@@ -8,6 +8,7 @@ const Tasks = (props) => {
     const taskElements = props.tasks.map(t => <Task
         task={t.task}
         id={t.id}
+        favoriteStatus={t.favoriteStatus}
         currentTaskId={props.currentTaskId}
         setCurrentTaskId={props.setCurrentTaskId}
         setCurrentTask={props.setCurrentTask}
@@ -30,8 +31,11 @@ const Tasks = (props) => {
         )
     }
     return (
-    <div className={classes.tasksBox}>
-            {taskElements}
+        <div className={classes.tasksBox}>
+            <textarea type="text" />
+            <div className={classes.taskElementsBox}>
+                {taskElements}
+            </div>
             <button onClick={onButtonClick}></button>
     </div>
 )
@@ -51,7 +55,7 @@ const TasksContainer = connect(mapStateToProps,
         setCurrentTask,
         setOnAddNoteModalStatus,
         toggleFocusTaskId,
-        setOnRemoveNoteModalStatus
+        setOnRemoveNoteModalStatus,
 })(Tasks)
 
 export { TasksContainer }
