@@ -40,7 +40,7 @@ const EditTaskModal = (props) => {
                     <button onClick={onAddButtonClick} className={classes.addEditButton}></button> 
                     <button onClick={onCancelButtonClick} className={classes.cancelEditButton}></button> 
                     <form>
-                        <textarea className={classes.header} ref={header} value={props.headerText} onChange={onHeaderTextChange}/>
+                        <input className={classes.header} ref={header} value={props.headerText} onChange={onHeaderTextChange}/>
                         <textarea className={classes.description} ref={description} value={props.descriptionText} onChange={onDescriptionTextChange} />
                    </form>
                 </div>

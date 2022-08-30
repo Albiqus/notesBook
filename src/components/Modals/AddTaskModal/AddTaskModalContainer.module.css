@@ -31,8 +31,14 @@ z-index: 99999
   background-color: rgb(90, 90, 90);
   color: white;
   outline: none;
+  border: none;
   resize: none;
 }
+
+.header.error{
+    outline: 2px solid red;
+}
+
 .description{
   position: absolute;
   left: 30px;
@@ -48,6 +54,10 @@ z-index: 99999
   color: white;
   outline: none;
   resize: none;
+}
+
+.description.error{
+outline: 2px solid red;
 }
 
 .cancelTaskButton {
@@ -94,4 +104,18 @@ outline: 2px solid rgb(192, 192, 192);
     border: none;
     background-image: url("../../../../public/img/close-modal.png");
     cursor: pointer;
+}
+
+.headerErrorText{
+    position: absolute;
+    color: red;
+    top: 16px;
+    right: 40px;
+}
+
+.descriptionErrorText {
+    position: absolute;
+    color: red;
+    top: 85px;
+    right: 40px;
 }
