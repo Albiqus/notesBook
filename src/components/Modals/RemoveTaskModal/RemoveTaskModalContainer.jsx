@@ -1,7 +1,7 @@
 import classes from './RemoveTaskModalContainer.module.css';
 import { connect } from 'react-redux';
 import React from 'react';
-import { removeTask } from '../../../redux/data-reducer';
+import { removeTask, setFilterStatus } from '../../../redux/data-reducer';
 import { setOnRemoveNoteModalStatus } from '../../../redux/modals-reducer';
 
 const RemoveTaskModal = (props) => {
@@ -12,6 +12,7 @@ const RemoveTaskModal = (props) => {
     const onButtonYesClick = () => {
         props.removeTask(props.currentTaskId)
         closeModal()
+        props.filterStatus === 'favorite' && props.setFilterStatus('favorite')
     }
 
     const onButtonNoClick = () => {
@@ -35,8 +36,9 @@ const mapStateToProps = (state) => {
         removeNoteModalStatus: state.modals.removeNoteModalStatus,
         currentTask: state.data.currentTask,
         currentTaskId: state.data.currentTaskId,
+        filterStatus: state.data.filterStatus
     }
 }
 
-const RemoveTaskModalContainer = connect(mapStateToProps, { removeTask, setOnRemoveNoteModalStatus })(RemoveTaskModal)
+const RemoveTaskModalContainer = connect(mapStateToProps, { removeTask, setOnRemoveNoteModalStatus, setFilterStatus })(RemoveTaskModal)
 export { RemoveTaskModalContainer }

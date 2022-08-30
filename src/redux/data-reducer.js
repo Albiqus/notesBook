@@ -5,6 +5,7 @@ const TOGGLE_FOCUS_TASK_ID = 'TOGGLE_FOCUS_TASK_ID'
 const SET_CURRENT_TASK = 'SET_CURRENT_TASK'
 const EDIT_TASK = 'EDIT_TASK'
 const SET_FAVORITE_STATUS = 'SET_FAVORITE_STATUS'
+const SET_FILTER_STATUS = 'SET_FILTER_STATUS'
 
 const startState = {
     tasks: [
@@ -38,10 +39,11 @@ const startState = {
     currentTaskId: 0,
     currentTask: null,
     focusTaskId: null,
+    filterStatus: 'all'
 }
 
 let newTasks;
-
+let newCurrentTaskId;
 export const listReducer = (state = startState, action) => {
     switch (action.type) {
         case SET_CURRENT_TASK_ID:
@@ -55,13 +57,15 @@ export const listReducer = (state = startState, action) => {
                 currentTask: action.currentTask
             }
         case ADD_TASK:
+            let newIsFavorite
+            state.filterStatus === 'favorite' ? newIsFavorite = true : newIsFavorite = false
             return {
                 ...state,
                 tasks: [...state.tasks, {
                     id: state.tasks.length,
                     task: action.task,
                     description: action.description,
-                    isFavorite: false
+                    favoriteStatus: newIsFavorite
                 }],
                 currentTaskId: state.tasks.length
             }
@@ -70,7 +74,6 @@ export const listReducer = (state = startState, action) => {
             for (let i = 0; i < newTasks.length; i++){
                 newTasks[i].id = i
             }
-            let newCurrentTaskId;
             newTasks.length === 0 ? newCurrentTaskId = null : newCurrentTaskId = 0
             return {
                 ...state,
@@ -115,6 +118,24 @@ export const listReducer = (state = startState, action) => {
              return {
                  ...state,
                  tasks: newTasks
+            }
+        case SET_FILTER_STATUS:
+            if (action.status === 'favorite') {
+                let favoriteNotes = [...state.tasks].filter(task => task.favoriteStatus === true)
+                favoriteNotes.length !== 0
+                ? newCurrentTaskId = favoriteNotes[0].id
+                : newCurrentTaskId = null
+            }
+            if (action.status === 'all') {
+                let notes = [...state.tasks]
+                notes.length !== 0
+                ? newCurrentTaskId = 0
+                : newCurrentTaskId = null
+             }
+             return {
+                 ...state,
+                 filterStatus: action.status,
+                 currentTaskId: newCurrentTaskId
              }
         default:
             return state;
@@ -154,4 +175,7 @@ export const setFavoriteStatus = (status, id) => ({
     status,
     id
 })
-
+export const setFilterStatus = (status) => ({
+    type: SET_FILTER_STATUS,
+    status
+})

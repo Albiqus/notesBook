@@ -1,7 +1,7 @@
 import classes from './Descriptions.module.css';
 import { connect } from 'react-redux';
 import { setOnEditNoteModalStatus, setOnRemoveNoteModalStatus, updateDescriptionText, updateHeaderText } from '../../redux/modals-reducer';
-import { setCurrentTask, setFavoriteStatus } from '../../redux/data-reducer';
+import { setCurrentTask, setFavoriteStatus, setFilterStatus } from '../../redux/data-reducer';
 
 const Descriptions = (props) => {
 
@@ -14,12 +14,14 @@ const Descriptions = (props) => {
     const onRemoveButtonClick = () => {
         props.setCurrentTask(props.tasks[props.currentTaskId].task)
         props.setOnRemoveNoteModalStatus(true)
+        
     }
     
     const onFavoriteButtonClick = () => {
         props.tasks[props.currentTaskId].favoriteStatus
         ? props.setFavoriteStatus(false, props.currentTaskId)
         : props.setFavoriteStatus(true, props.currentTaskId)
+        props.filterStatus === 'favorite' && props.setFilterStatus('favorite')
     }
 
 
@@ -52,7 +54,8 @@ const mapStateToProps = (state) => {
     return {
         currentTaskId: state.data.currentTaskId,
         tasks: state.data.tasks,
-        focusDescription: state.data.focusDescription
+        focusDescription: state.data.focusDescription,
+        filterStatus: state.data.filterStatus
     }
 }
 
@@ -63,7 +66,8 @@ const DescriptionsContainer = connect(mapStateToProps,
         setCurrentTask,
         updateHeaderText,
         updateDescriptionText,
-        setFavoriteStatus
+        setFavoriteStatus,
+        setFilterStatus
     })(Descriptions)
 
 export { DescriptionsContainer }
