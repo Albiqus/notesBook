@@ -9,5 +9,5 @@ display: grid;
 grid-template-areas:
 "list decoration description";
 grid-template-rows: 700px;
-grid-template-columns: 250px 50px 550px;
+grid-template-columns: 250px 30px 550px;
 }
