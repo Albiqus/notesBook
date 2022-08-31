@@ -66,8 +66,18 @@ const AddTaskModal = (props) => {
                     <button onClick={onAddButtonClick} className={classes.addTaskButton}></button> 
                     <button onClick={onCancelButtonClick} className={classes.cancelTaskButton}></button> 
                     <form>
-                        <input className={props.headerSpacesErrorStatus === true ? `${classes.header} ${classes.error}` : classes.header} ref={input} placeholder='Название..' value={props.headerText} onChange={updateHeaderText}/>
-                        <textarea className={props.descriptionSpacesErrorStatus === true ? `${classes.description} ${classes.error}` : classes.description} ref={textarea} placeholder='Описание..' value={props.descriptionText} onChange={updateDescriptionText} />
+                        <input
+                            className={props.headerSpacesErrorStatus === true ? `${classes.header} ${classes.error}` : classes.header}
+                            ref={input} placeholder='Название..'
+                            value={props.headerText}
+                            onChange={updateHeaderText} />
+                        <textarea
+                            className={props.descriptionSpacesErrorStatus === true ? `${classes.description} ${classes.error}` : classes.description}
+                            ref={textarea}
+                            placeholder='Описание..'
+                            value={props.descriptionText}
+                            onChange={updateDescriptionText}
+                        />
                     </form>
                     {props.headerSpacesErrorStatus === true && <p className={classes.headerErrorText}>заполните это поле</p>}
                     {props.descriptionSpacesErrorStatus === true && <p className={classes.descriptionErrorText}>заполните это поле</p>}

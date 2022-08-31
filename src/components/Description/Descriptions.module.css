@@ -10,6 +10,7 @@ position: absolute;
 top: 93px;
 left: 33px; 
 right: 30px;
+word-wrap: break-word;
 }
 
 .description {
@@ -18,6 +19,7 @@ font-family: Georgia, serif;
 font-size: 20px;
 line-height:  1.2;
 color: white;
+white-space: pre-wrap
 }
 
 .header {
