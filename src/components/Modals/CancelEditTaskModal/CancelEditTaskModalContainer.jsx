@@ -1,7 +1,7 @@
 import classes from './CancelEditTaskModalContainer.module.css';
 import { connect } from 'react-redux';
 import React from 'react';
-import { setOnCancelEditNoteModalStatus, setOnEditNoteModalStatus } from '../../../redux/modals-reducer';
+import { setOnCancelEditNoteModalStatus, setOnEditNoteModalStatus, updateDescriptionText, updateHeaderText } from '../../../redux/modals-reducer';
 
 const CancelEditTaskModal = (props) => {
     const closeModal = () => {
@@ -11,6 +11,8 @@ const CancelEditTaskModal = (props) => {
     const onButtonYesClick = () => {
         closeModal()
         props.setOnEditNoteModalStatus(false)
+        props.updateHeaderText('')
+        props.updateDescriptionText('')
     }
 
     const onButtonNoClick = () => {
@@ -38,6 +40,8 @@ const mapStateToProps = (state) => {
 const CancelEditTaskModalContainer = connect(mapStateToProps,
     {
         setOnCancelEditNoteModalStatus,
-        setOnEditNoteModalStatus
+        setOnEditNoteModalStatus,
+        updateDescriptionText,
+        updateHeaderText
     })(CancelEditTaskModal)
 export { CancelEditTaskModalContainer }

@@ -25,7 +25,7 @@ const Descriptions = (props) => {
     }
 
 
-    if (props.currentTaskId !== null) {
+    if (props.tasks.length !== 0 ) {
         const DescriptionTextElements = props.tasks[props.currentTaskId].description.split("\n").map(textElement => <p className={classes.description}>{textElement}</p>)
         return (
             <div className={classes.descriptionBox}>

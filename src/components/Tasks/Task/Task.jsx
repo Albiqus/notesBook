@@ -19,7 +19,7 @@ const Task = (props) => {
         props.setOnRemoveNoteModalStatus(true)
     }
 
-    if (props.filterStatus === 'all'){
+    if (props.filterStatus === 'all' && props.isShow){
     return (
         <div
             onMouseEnter={onTaskMouseEnter}
@@ -37,7 +37,7 @@ const Task = (props) => {
        </div>
         )
     } 
-    if (props.filterStatus === 'favorite') {
+    if (props.filterStatus === 'favorite' && props.isShow) {
         if (props.favoriteStatus) { 
         return (
             <div

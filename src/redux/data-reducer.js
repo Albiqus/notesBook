@@ -6,6 +6,8 @@ const SET_CURRENT_TASK = 'SET_CURRENT_TASK'
 const EDIT_TASK = 'EDIT_TASK'
 const SET_FAVORITE_STATUS = 'SET_FAVORITE_STATUS'
 const SET_FILTER_STATUS = 'SET_FILTER_STATUS'
+const UPDATE_SEARCH_TEXT = 'UPDATE_SEARCH_TEXT'
+const SET_NEW_TASKS = 'SET_NEW_TASKS'
 
 const startState = {
     tasks: [
@@ -13,33 +15,39 @@ const startState = {
             id: 0,
             task: 'Уборка',
             description: 'Подмести в коридоре, помыть полы, пропылесосить в квартире. Протереть пыль в коридоре на полках. Вынести мусор',
-            favoriteStatus: false
+            favoriteStatus: false,
+            isShow: true
         },
 
         {
             id: 1,
             task: '12.04.2025',
             description: '12.04.2025 съездить в стоматологическую клинику по адресу ул.Пушкина, д.5',
-            favoriteStatus: false
+            favoriteStatus: false,
+            isShow: true
         },
 
         {
             id: 2,
             task: 'подарки НГ',
             description: 'Купить на новый год:\nсын - конструктор,\nжена - ирригатор,\nродители - новый диван',
-            favoriteStatus: true
+            favoriteStatus: true,
+            isShow: true
         },
         {
             id: 3,
             task: 'фильмы',
             description: 'Терминатор\nАгент Ева\nВсё могу\nДьявол среди нас\nКлаустрофобы: Квест В Москве\nСекрет\nУбийство по открыткам\nЧестный вор\nКалашников\nСуд над чикагской семьёй\nДовод',
-            favoriteStatus: false
+            favoriteStatus: false,
+            isShow: true
         },
     ],
     currentTaskId: 0,
     currentTask: null,
     focusTaskId: null,
-    filterStatus: 'all'
+    searchText: '',
+    filterStatus: 'all',
+    tasksCopy: null
 }
 
 let newTasks;
@@ -65,7 +73,8 @@ export const listReducer = (state = startState, action) => {
                     id: state.tasks.length,
                     task: action.task,
                     description: action.description,
-                    favoriteStatus: newIsFavorite
+                    favoriteStatus: newIsFavorite,
+                    isShow: true
                 }],
                 currentTaskId: state.tasks.length
             }
@@ -94,7 +103,8 @@ export const listReducer = (state = startState, action) => {
                         id: task.id,
                         task: action.headerText,
                         description: action.descriptionText,
-                        favoriteStatus: task.favoriteStatus
+                        favoriteStatus: task.favoriteStatus,
+                        isShow: true
                     }
                 }
             })
@@ -111,7 +121,8 @@ export const listReducer = (state = startState, action) => {
                          id: task.id,
                          task: task.task,
                          description: task.description,
-                         favoriteStatus: action.status
+                         favoriteStatus: action.status,
+                         isShow: true
                      }
                  }
             })
@@ -136,7 +147,40 @@ export const listReducer = (state = startState, action) => {
                  ...state,
                  filterStatus: action.status,
                  currentTaskId: newCurrentTaskId
-             }
+            }
+        case UPDATE_SEARCH_TEXT:
+            return {
+                ...state,
+                searchText: action.text
+            }
+        case SET_NEW_TASKS:
+            newTasks = [...state.tasks]
+            for (let i = 0; i < newTasks.length; i++){
+                for (let j = 0; j < action.text.length; j++){
+                    if (action.text[j].toLowerCase() === newTasks[i].task[j].toLowerCase()) {
+                        newTasks[i].isShow = true
+                    } else {
+                       newTasks[i].isShow = false
+                    }
+                }
+            }
+            if (action.text === '') {
+                newTasks.forEach(task => {
+                  task.isShow = true
+              })
+            }
+            for (let i = 0; i < newTasks.length; i++) {
+                if (newTasks[i].isShow === true) {
+                    newCurrentTaskId = newTasks[i].id
+                    break
+            } 
+            }
+
+            return {
+                ...state,
+                tasks: newTasks,
+                currentTaskId: newCurrentTaskId
+            }
         default:
             return state;
     }
@@ -163,7 +207,6 @@ export const toggleFocusTaskId = (focusTaskId) => ({
     type: TOGGLE_FOCUS_TASK_ID,
     focusTaskId
 })
-
 export const editTask = (id, headerText, descriptionText) => ({
     type: EDIT_TASK,
     id,
@@ -179,3 +222,13 @@ export const setFilterStatus = (status) => ({
     type: SET_FILTER_STATUS,
     status
 })
+export const updateSearchText = (text) => ({
+    type: UPDATE_SEARCH_TEXT,
+    text
+})
+export const setNewTasks = (text) => ({
+    type: SET_NEW_TASKS,
+    text
+})
+
+
