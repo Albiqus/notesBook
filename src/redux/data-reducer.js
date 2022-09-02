@@ -173,9 +173,10 @@ export const listReducer = (state = startState, action) => {
                 if (newTasks[i].isShow === true) {
                     newCurrentTaskId = newTasks[i].id
                     break
-            } 
+            } else {
+                newCurrentTaskId = null
             }
-
+            }
             return {
                 ...state,
                 tasks: newTasks,
