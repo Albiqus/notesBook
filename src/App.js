@@ -7,6 +7,7 @@ import { RemoveTaskModalContainer } from './components/Modals/RemoveTaskModal/Re
 import { EditTaskModalContainer } from './components/Modals/EditTaskModal/EditTaskModalContainer';
 import { CancelAddTaskModalContainer } from './components/Modals/CancelAddTaskModal/CancelAddTaskModalContainer';
 import { CancelEditTaskModalContainer } from './components/Modals/CancelEditTaskModal/CancelEditTaskModalContainer';
+import { SettingsContainer } from './components/Settings/Settings';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
               <CancelAddTaskModalContainer />
               <CancelEditTaskModalContainer/>
           <div className="main-content">
+              <SettingsContainer />
               <TasksContainer/>
               <Decoration/>
               <DescriptionsContainer/>

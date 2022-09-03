@@ -3,11 +3,11 @@
 }
 
 .main-content {
-padding-left: 100px;
+padding-left: 200px;
 padding-top: 80px;
 display: grid;
 grid-template-areas:
-"list decoration description";
+"settings list decoration description";
 grid-template-rows: 700px;
-grid-template-columns: 250px 30px 550px;
+grid-template-columns: 190px 250px 30px 550px;
 }

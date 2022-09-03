@@ -14,18 +14,23 @@ const EditTaskModal = (props) => {
         props.updateDescriptionText('')
     }
     
+
     const isValidate = (header, description) => {
+        let errorsCounter = 0;
         const headerWithoutSpaces = header.replace(/ /g, '')
         if (headerWithoutSpaces === '') {
             props.setHeaderSpacesErrorStatus(true)
-            return false
+            errorsCounter++
         }
         const descriptionWithoutSpaces = description.replace(/(\r\n|\n|\r)/gm, '').replace(/ /g, '')
         if (descriptionWithoutSpaces === '') {
             props.setDescriptionSpacesErrorStatus(true)
-            return false
+            errorsCounter++
         }
-        return true
+        if (errorsCounter === 0) {
+            return true
+        }
+
     }
 
     const onAddButtonClick = () => {
@@ -36,6 +41,8 @@ const EditTaskModal = (props) => {
     }
     
     const onCancelButtonClick = () => {
+        props.setHeaderSpacesErrorStatus(false)
+        props.setDescriptionSpacesErrorStatus(false)
         header.current.value === props.tasks[props.currentTaskId].task && description.current.value === props.tasks[props.currentTaskId].description
         ? closeModal()
         : props.setOnCancelEditNoteModalStatus(true)

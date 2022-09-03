@@ -28,8 +28,10 @@ const Descriptions = (props) => {
     if (props.currentTaskId !== null ) {
         const DescriptionTextElements = props.tasks[props.currentTaskId].description.split("\n").map(textElement => <p className={classes.description}>{textElement}</p>)
         return (
-            <div className={classes.descriptionBox}>
-                <p className={classes.header}>{props.tasks[props.currentTaskId].task}</p>
+            <div className={props.theme === 'dark' ? classes.descriptionBox : `${classes.descriptionBox} ${classes.lightTheme}` }>
+                <div className={classes.headerText}>
+                    <p className={classes.header}>{props.tasks[props.currentTaskId].task}</p>
+                </div>
                 <div className={classes.descriptionText}>
                     {DescriptionTextElements}
                 </div>
@@ -55,7 +57,8 @@ const mapStateToProps = (state) => {
         currentTaskId: state.data.currentTaskId,
         tasks: state.data.tasks,
         focusDescription: state.data.focusDescription,
-        filterStatus: state.data.filterStatus
+        filterStatus: state.data.filterStatus,
+        theme: state.settings.theme
     }
 }
 

@@ -2,29 +2,55 @@
     position: relative;
     height: 40px;
     margin-left: 20px;
-    margin-right: 20px;
+    width: 205px;
     margin-top: 20px;
     background-color: rgb(122, 122, 122);
     border-radius: 5px;
     cursor: pointer;
 }
 
-.taskItem p{
+.taskItem.lightTheme{
+    background-color: rgb(243, 243, 243);
+}
+
+.textBox {
+    position: absolute;
+    left: 40px;
+    width: 125px;
+    height: 40px;
+    overflow: hidden;
+    white-space: pre;
+}
+
+
+
+.text{
 color: white;
 position: absolute;
 margin: 0;
-left: 40px;
 top: 7px;
 font-family: Georgia, serif;
 font-size: 20px;
+}
+
+.text.lightTheme {
+   color: black;
 }
 
 .taskItem:hover{
 outline: 2px solid rgb(192, 192, 192);
 }
 
+.taskItem.lightTheme:hover{
+    outline: 2px solid rgb(0, 0, 0);
+}
+
 .active{
   outline: 2px solid rgb(192, 192, 192);
+}
+
+.taskItem.active.lightTheme{
+    outline: 2px solid rgb(0, 0, 0);
 }
 
 .removeTaskButton {

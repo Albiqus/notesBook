@@ -18,6 +18,7 @@ const Tasks = (props) => {
         focusTaskId={props.focusTaskId}
         setOnRemoveNoteModalStatus={props.setOnRemoveNoteModalStatus}
         filterStatus={props.filterStatus}
+        theme={props.theme}
     />)
 
     const onAddButtonClick = () => {
@@ -38,19 +39,38 @@ const Tasks = (props) => {
 
     }
         return (
-            <div className={classes.tasksBox}>
-                <input onChange={onSearchChange} className={classes.search} value={props.searchText} placeholder='поиск..'></input>
-                <p className={classes.allButtonText}>все</p>
-                <p className={classes.favoriteButtonText}>избранные</p>
-                <div onClick={onAllButtonClick} className={props.filterStatus === 'all' ? `${classes.allButton} ${classes.added}` : classes.allButton}></div>
-                <div onClick={onFavoriteButtonClick} className={props.filterStatus === 'favorite' ? `${classes.favoriteButton} ${classes.added}` : classes.favoriteButton}></div>
+            <div className={props.theme === 'dark' ? classes.tasksBox : `${classes.tasksBox} ${classes.lightTheme}`}>
+                <input onChange={onSearchChange} className={props.theme === 'dark' ? classes.search : `${classes.search} ${classes.lightTheme}`} value={props.searchText} placeholder='поиск..'></input>
+                <p className={props.theme === 'dark' ? classes.allButtonText : `${classes.allButtonText} ${classes.lightTheme}` }>все</p>
+                <p className={props.theme === 'dark' ? classes.favoriteButtonText : `${classes.favoriteButtonText} ${classes.lightTheme}` }>избранные</p>
+                <div onClick={onAllButtonClick}
+                    className={
+                        props.filterStatus === 'all'
+                            ? props.theme === 'dark'
+                                ? `${classes.allButton} ${classes.added}`
+                                : `${classes.allButton} ${classes.added} ${classes.lightTheme}`
+                            : props.theme === 'dark' 
+                                ? classes.allButton
+                                : `${classes.allButton} ${classes.lightTheme}`}>
+                    
+                            </div>
+                <div onClick={onFavoriteButtonClick}
+                    className={
+                        props.filterStatus === 'favorite'
+                            ? props.theme === 'dark'
+                                ? `${classes.favoriteButton} ${classes.added}`
+                                : `${classes.favoriteButton} ${classes.added} ${classes.lightTheme}`
+                            : props.theme === 'dark' 
+                                ? classes.favoriteButton
+                                : `${classes.favoriteButton} ${classes.lightTheme}`}>
+                </div>
                 {props.currentTaskId === null
-                    ? <p className={classes.noNotesText}>нет заметок</p>
+                    ? <p className={classes.noNotesText} >нет заметок</p>
                     : <div className={classes.taskElementsBox}>
                         {taskElements}
                     </div>}
                 
-                <button onClick={onAddButtonClick}></button>
+                <button className={props.theme === 'dark' ? classes.addButton : `${classes.addButton} ${classes.lightTheme}`} onClick={onAddButtonClick}></button>
             </div>
         )
 }
@@ -61,7 +81,8 @@ const mapStateToProps = (state) => {
         currentTaskId: state.data.currentTaskId,
         focusTaskId: state.data.focusTaskId,
         filterStatus: state.data.filterStatus,
-        searchText: state.data.searchText
+        searchText: state.data.searchText,
+        theme: state.settings.theme
     }
 }
 

@@ -7,7 +7,7 @@ z-index: 99999
 
 .modalContentBox {
     position: relative;
-    margin-left: 380px;
+    margin-left: 630px;
     margin-top: 80px;
     height: 696px;
     width: 546px;
@@ -54,7 +54,22 @@ z-index: 99999
   color: white;
   outline: none;
   resize: none;
+  overflow: auto;
+}
 
+.description::-webkit-scrollbar{
+width: 5px;
+display: inline;
+}
+
+.description::-webkit-scrollbar-track{
+background: rgb(90,90,90);
+
+}
+
+.description::-webkit-scrollbar-thumb{
+background: rgb(122, 122, 122);
+border: 1px solid black
 }
 
 .description.error{

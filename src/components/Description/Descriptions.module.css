@@ -5,13 +5,34 @@
     background-color: rgb(122, 122, 122);
 }
 
+.descriptionBox.lightTheme{
+    background-color: rgb(243, 243, 243);
+}
+
 .descriptionText {
 position: absolute;
 top: 93px;
 left: 33px; 
 right: 30px;
-word-wrap: break-word;
+word-wrap: break-word; 
+height: 495px;
+overflow-y: auto;
 }
+
+.descriptionText::-webkit-scrollbar{
+width: 5px;
+display: inline;
+
+}
+
+.descriptionText::-webkit-scrollbar-track{
+background: rgb(122, 122, 122)
+}
+
+.descriptionText::-webkit-scrollbar-thumb{
+background: rgb(90, 90, 90);
+}
+
 
 .description {
 margin: 0;
@@ -21,6 +42,15 @@ line-height:  1.2;
 color: white;
 white-space: pre-wrap
 }
+
+.headerText{
+position: absolute;
+overflow: hidden;
+width: 370px;
+height: 80px;
+white-space: pre;
+}
+
 
 .header {
 font-weight: bold;
