@@ -24,28 +24,39 @@ const Descriptions = (props) => {
         props.filterStatus === 'favorite' && props.setFilterStatus('favorite')
     }
 
-
+    let counter = 0;
     if (props.currentTaskId !== null ) {
-        const DescriptionTextElements = props.tasks[props.currentTaskId].description.split("\n").map(textElement => <p className={classes.description}>{textElement}</p>)
+        const DescriptionTextElements = props.tasks[props.currentTaskId].description.split("\n").map(textElement => {
+            counter++
+            return <p key={counter} className = {props.theme === 'тёмная' ? classes.description : `${classes.description} ${classes.lightTheme}`}>{textElement}</p>})
         return (
-            <div className={props.theme === 'dark' ? classes.descriptionBox : `${classes.descriptionBox} ${classes.lightTheme}` }>
+            <div onDoubleClick={onEditButtonClick} className={props.theme === 'тёмная' ? classes.descriptionBox : `${classes.descriptionBox} ${classes.lightTheme}` }>
                 <div className={classes.headerText}>
-                    <p className={classes.header}>{props.tasks[props.currentTaskId].task}</p>
+                    <p className={props.theme === 'тёмная' ? classes.header : `${classes.header} ${classes.lightTheme}`}>{props.tasks[props.currentTaskId].task}</p>
                 </div>
                 <div className={classes.descriptionText}>
                     {DescriptionTextElements}
                 </div>
                 <div>
-                    <button onClick={onEditButtonClick}className={classes.editButton}></button>
-                    <button onClick={onRemoveButtonClick} className={classes.removeButton}></button>
-                    <button onClick={onFavoriteButtonClick} className={props.tasks[props.currentTaskId].favoriteStatus ? classes.favoriteButtonPressed : classes.favoriteButton}></button>
+                    <button onClick={onEditButtonClick} className={props.theme === 'тёмная' ? classes.editButton : `${classes.editButton} ${classes.lightTheme}`}></button>
+                    <button onClick={onRemoveButtonClick} className={props.theme === 'тёмная' ? classes.removeButton : `${classes.removeButton} ${classes.lightTheme}`}></button>
+                    <button onClick={onFavoriteButtonClick}
+                        className={
+                            props.tasks[props.currentTaskId].favoriteStatus
+                                ? props.theme === 'тёмная'
+                                    ? classes.favoriteButtonPressed
+                                    : `${classes.favoriteButtonPressed} ${classes.lightTheme}`
+                                : props.theme === 'тёмная'
+                                    ? classes.favoriteButton
+                                    : `${classes.favoriteButton} ${classes.lightTheme}`
+                                }></button>
                 </div>
                 
             </div>
         )
     } else {
         return (
-            <div className={classes.descriptionBox}>
+            <div className={props.theme === 'тёмная' ? classes.descriptionBox : `${classes.descriptionBox} ${classes.lightTheme}`}>
                 
             </div>
         ) 

@@ -27,15 +27,15 @@ const Task = (props) => {
             onClick={onTaskClick}
             className={
                 props.currentTaskId === props.id
-                    ? props.theme === 'dark'
+                    ? props.theme === 'тёмная'
                         ? `${classes.taskItem} ${classes.active}`
                         : `${classes.taskItem} ${classes.active} ${classes.lightTheme}`
-                    : props.theme === 'dark'
+                    : props.theme === 'тёмная'
                         ? classes.taskItem
                         : `${classes.taskItem} ${classes.lightTheme}`
                     }>
             <div className={classes.textBox}>
-                <p className={props.theme === 'dark' ? classes.text : `${classes.text} ${classes.lightTheme}`}>{props.task}</p>
+                <p className={props.theme === 'тёмная' ? classes.text : `${classes.text} ${classes.lightTheme}`}>{props.task}</p>
             </div>
             {props.favoriteStatus &&
                 <div className={classes.favoriteButton}>
@@ -55,14 +55,14 @@ const Task = (props) => {
                 onMouseLeave={onTaskMouseLeave}
                 onClick={onTaskClick}
                 className={props.currentTaskId === props.id
-                    ? props.theme === 'dark'
+                    ? props.theme === 'тёмная'
                         ? `${classes.taskItem} ${classes.active}`
                         : `${classes.taskItem} ${classes.active} ${classes.lightTheme}`
-                    : props.theme === 'dark'
+                    : props.theme === 'тёмная'
                         ? classes.taskItem
                         : `${classes.taskItem} ${classes.lightTheme}`}>
                 <div className={classes.textBox}>
-                    <p className={props.theme === 'dark' ? classes.text : `${classes.text} ${classes.lightTheme}`}>{props.task}</p>
+                    <p className={props.theme === 'тёмная' ? classes.text : `${classes.text} ${classes.lightTheme}`}>{props.task}</p>
                 </div>
                 {props.favoriteStatus &&
                     <div className={classes.favoriteButton}>

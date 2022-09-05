@@ -61,17 +61,31 @@ const EditTaskModal = (props) => {
     if (props.editNoteModalStatus) {
         return (
             <div className={classes.modalBox}>
-                <div className={classes.modalContentBox}>
-                    <button onClick={onAddButtonClick} className={classes.addEditButton}></button> 
-                    <button onClick={onCancelButtonClick} className={classes.cancelEditButton}></button> 
+                <div className={props.theme === 'тёмная' ? classes.modalContentBox : `${classes.modalContentBox} ${classes.lightTheme}`}>
+                    <button onClick={onAddButtonClick} className={props.theme === 'тёмная' ? classes.addTaskButton : `${classes.addTaskButton} ${classes.lightTheme}`}></button> 
+                    <button onClick={onCancelButtonClick} className={props.theme === 'тёмная' ? classes.cancelTaskButton : `${classes.cancelTaskButton} ${classes.lightTheme}`}></button> 
                     <form>
                         <input
-                            className={props.headerSpacesErrorStatus === true ? `${classes.header} ${classes.error}` : classes.header}
+                            className={
+                                props.headerSpacesErrorStatus === true
+                                    ? props.theme === 'тёмная'
+                                        ? `${classes.header} ${classes.error}`
+                                        : `${classes.header} ${classes.error} ${classes.lightTheme}`
+                                    : props.theme === 'тёмная'
+                                        ? classes.header
+                                        : `${classes.header} ${classes.lightTheme}`}
                             ref={header}
                             value={props.headerText}
                             onChange={onHeaderTextChange} />
                         <textarea
-                            className={props.descriptionSpacesErrorStatus === true ? `${classes.description} ${classes.error}` : classes.description}
+                            className={
+                                props.descriptionSpacesErrorStatus === true
+                                    ? props.theme === 'тёмная'
+                                        ? `${classes.description} ${classes.error}`
+                                        : `${classes.description} ${classes.error} ${classes.lightTheme}`
+                                    : props.theme === 'тёмная'
+                                        ? classes.description
+                                        : `${classes.description} ${classes.lightTheme}`}
                             ref={description}
                             value={props.descriptionText}
                             onChange={onDescriptionTextChange} />
@@ -92,7 +106,8 @@ const mapStateToProps = (state) => {
         headerText: state.modals.headerText,
         descriptionText: state.modals.descriptionText,
         headerSpacesErrorStatus: state.modals.headerSpacesErrorStatus,
-        descriptionSpacesErrorStatus: state.modals.descriptionSpacesErrorStatus
+        descriptionSpacesErrorStatus: state.modals.descriptionSpacesErrorStatus,
+        theme: state.settings.theme
     }
 }
 

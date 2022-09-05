@@ -1,13 +1,10 @@
-.App {
-
-}
 
 .main-content {
-padding-left: 200px;
+padding-left: 180px;
 padding-top: 80px;
 display: grid;
 grid-template-areas:
 "settings list decoration description";
 grid-template-rows: 700px;
-grid-template-columns: 190px 250px 30px 550px;
+grid-template-columns: 270px 250px 30px 550px;
 }

@@ -1,6 +1,6 @@
 import './App.css';
 import { AddTaskModalContainer } from './components/Modals/AddTaskModal/AddTaskModalContainer';
-import { Decoration } from './components/Decoration/Decoration';
+import {DecorationContainer} from './components/Decoration/Decoration';
 import { DescriptionsContainer } from './components/Description/Descriptions';
 import { TasksContainer } from './components/Tasks/Tasks';
 import { RemoveTaskModalContainer } from './components/Modals/RemoveTaskModal/RemoveTaskModalContainer';
@@ -21,7 +21,7 @@ function App() {
           <div className="main-content">
               <SettingsContainer />
               <TasksContainer/>
-              <Decoration/>
+              <DecorationContainer/>
               <DescriptionsContainer/>
           </div>
       </div>

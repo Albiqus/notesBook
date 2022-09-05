@@ -7,17 +7,21 @@ z-index: 99999
 
 .modalContentBox {
     position: relative;
-    margin-left: 630px;
+    margin-left: 730px;
     margin-top: 80px;
-    height: 696px;
-    width: 546px;
+    height: 700px;
+    width: 550px;
     background-color: rgb(122, 122, 122);
-    border: 2px solid rgb(0, 0, 0);
+    outline: 2px solid rgb(0, 0, 0);
     border-radius: 12px;
 }
 
+.modalContentBox.lightTheme {
+background-color: rgb(243, 243, 243);
+}
+
 .header{
-    font-weight: bold;
+  font-weight: bold;
   position: absolute;
   left: 30px;
   right: 30px;
@@ -35,9 +39,21 @@ z-index: 99999
   resize: none;
 }
 
+
 .header.error{
     outline: 2px solid red;
 }
+
+.header.lightTheme{
+   background-color: rgb(200, 200, 200);
+    color: black;
+}
+
+.header.error.lightTheme{
+    background-color: rgb(200, 200, 200);
+    color: black;
+}
+
 
 .description{
   position: absolute;
@@ -55,6 +71,7 @@ z-index: 99999
   outline: none;
   resize: none;
   overflow: auto;
+  border: none;
 }
 
 .description::-webkit-scrollbar{
@@ -76,6 +93,27 @@ border: 1px solid black
 outline: 2px solid red;
 }
 
+.description.lightTheme{
+ background-color: rgb(200, 200, 200);
+ color: black;
+ 
+}
+
+.description.lightTheme::-webkit-scrollbar{
+width: 5px;
+display: inline;
+}
+
+.description.lightTheme::-webkit-scrollbar-track{
+background: rgb(200,200,200);
+
+}
+
+.description.lightTheme::-webkit-scrollbar-thumb{
+background: rgb(243, 243, 243);
+border: 1px solid black
+}
+
 .cancelTaskButton {
     position: absolute;
     right: 180px;
@@ -93,6 +131,15 @@ outline: 2px solid red;
 outline: 2px solid rgb(192, 192, 192);
 }
 
+.cancelTaskButton.lightTheme {
+    background-image: url("../../../../public/img/cancel-edit-task-button-light.png");
+    background-color: rgb(200, 200, 200);
+}
+
+.cancelTaskButton.lightTheme:hover {
+   outline: 2px solid rgb(85, 85, 85)
+}
+
 .addTaskButton {
     position: absolute;
     left: 180px;
@@ -108,6 +155,15 @@ outline: 2px solid rgb(192, 192, 192);
 
 .addTaskButton:hover{
 outline: 2px solid rgb(192, 192, 192);
+}
+
+.addTaskButton.lightTheme{
+background-color: rgb(200, 200, 200);
+background-image: url("../../../../public/img/add-edit-task-button-light.png")
+}
+
+.addTaskButton.lightTheme:hover{
+outline: 2px solid rgb(85, 85, 85)
 }
 
 .closeModalButton {

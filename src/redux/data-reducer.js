@@ -157,11 +157,13 @@ export const listReducer = (state = startState, action) => {
             newTasks = [...state.tasks]
             for (let i = 0; i < newTasks.length; i++){
                 for (let j = 0; j < action.text.length; j++){
+                    if (typeof (newTasks[i].task[j]) !== 'undefined') {
                     if (action.text[j].toLowerCase() === newTasks[i].task[j].toLowerCase()) {
                         newTasks[i].isShow = true
                     } else {
                        newTasks[i].isShow = false
-                    }
+                        }
+                }
                 }
             }
             if (action.text === '') {

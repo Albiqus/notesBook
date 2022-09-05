@@ -3,3 +3,7 @@ height: 700px;
 width: 50px;
 background-image: url(../../../public/img/decoration/decoration.png);
 }
+
+.decorationBox.lightTheme{
+background-image: url(../../../public/img/decoration/decoration-light.png);
+}

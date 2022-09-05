@@ -1,12 +1,21 @@
 import classes from './Decoration.module.css';
-
+import { connect } from 'react-redux';
 
 const Decoration = (props) => {
     return (
-        <div className={classes.decorationBox} >
+        <div className={props.theme === 'тёмная' ? classes.decorationBox : `${classes.decorationBox} ${classes.lightTheme}`} >
          
         </div>
     )
 }
 
-export { Decoration }
+const mapStateToProps = (state) => {
+    return {
+        theme: state.settings.theme
+    }
+}
+
+const DecorationContainer = connect(mapStateToProps, {})(Decoration)
+
+
+export { DecorationContainer }

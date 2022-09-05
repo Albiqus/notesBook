@@ -1,6 +1,6 @@
 .descriptionBox {
     position: relative;
-    border: 2px solid rgb(0, 0, 0);
+    outline: 2px solid rgb(0, 0, 0);
     border-radius: 12px;
     background-color: rgb(122, 122, 122);
 }
@@ -11,8 +11,8 @@
 
 .descriptionText {
 position: absolute;
-top: 93px;
-left: 33px; 
+top: 92px;
+left: 32px; 
 right: 30px;
 word-wrap: break-word; 
 height: 495px;
@@ -43,6 +43,10 @@ color: white;
 white-space: pre-wrap
 }
 
+.description.lightTheme {
+color: black;
+}
+
 .headerText{
 position: absolute;
 overflow: hidden;
@@ -50,7 +54,6 @@ width: 370px;
 height: 80px;
 white-space: pre;
 }
-
 
 .header {
 font-weight: bold;
@@ -63,6 +66,9 @@ line-height:  1.5;
 color: white;
 }
 
+.header.lightTheme{
+color: black;
+}
 
 .editButton{
 position: absolute;
@@ -79,6 +85,15 @@ border: none;
 
 .editButton:hover{
    outline: 2px solid rgb(192, 192, 192); 
+}
+
+.editButton.lightTheme{
+background-color: rgb(200,200,200);
+background-image: url(../../../public/img/edit-task-light.png);
+}
+
+.editButton.lightTheme:hover{
+outline: 2px solid  rgb(85, 85, 85);
 }
 
 .removeButton {
@@ -98,6 +113,16 @@ border: none;
    outline: 2px solid rgb(192, 192, 192); 
 }
 
+.removeButton.lightTheme{
+background-color: rgb(200,200,200);
+background-image: url(../../../public/img/remove-task2-light.png);
+
+}
+
+.removeButton.lightTheme:hover{
+outline: 2px solid  rgb(85, 85, 85);
+}
+
 .favoriteButton{
 position: absolute;
 right: 100px;
@@ -115,6 +140,15 @@ border: none;
    outline: 2px solid rgb(192, 192, 192); 
 }
 
+.favoriteButton.lightTheme{
+background-color: rgb(200,200,200);
+background-image: url(../../../public/img/not-pressed-favorites-note-button-light.png);
+}
+
+.favoriteButton.lightTheme:hover{
+outline: 2px solid  rgb(85, 85, 85);
+}
+
 .favoriteButtonPressed{
 position: absolute;
 right: 100px;
@@ -130,4 +164,12 @@ border: none;
 
 .favoriteButtonPressed:hover{
    outline: 2px solid rgb(192, 192, 192); 
+}
+
+.favoriteButtonPressed.lightTheme{
+background-color: rgb(200,200,200);
+}
+
+.favoriteButtonPressed.lightTheme:hover{
+outline: 2px solid rgb(0, 0, 0);
 }

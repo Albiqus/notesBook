@@ -22,8 +22,6 @@
     white-space: pre;
 }
 
-
-
 .text{
 color: white;
 position: absolute;
@@ -42,7 +40,7 @@ outline: 2px solid rgb(192, 192, 192);
 }
 
 .taskItem.lightTheme:hover{
-    outline: 2px solid rgb(0, 0, 0);
+    outline: 2px solid rgb(85, 85, 85);
 }
 
 .active{
@@ -50,7 +48,7 @@ outline: 2px solid rgb(192, 192, 192);
 }
 
 .taskItem.active.lightTheme{
-    outline: 2px solid rgb(0, 0, 0);
+    outline: 2px solid rgb(85, 85, 85);
 }
 
 .removeTaskButton {

@@ -7,16 +7,21 @@ z-index: 99999
 
 .modalContentBox {
     position: relative;
-    margin-left: 630px;
+    margin-left: 730px;
     margin-top: 80px;
-    height: 696px;
-    width: 546px;
+    height: 700px;
+    width: 550px;
     background-color: rgb(122, 122, 122);
-    border: 2px solid rgb(0, 0, 0);
+    outline: 2px solid rgb(0, 0, 0);
     border-radius: 12px;
 }
 
-.header {
+.modalContentBox.lightTheme {
+background-color: rgb(243, 243, 243);
+}
+
+.header{
+  font-weight: bold;
   position: absolute;
   left: 30px;
   right: 30px;
@@ -25,34 +30,48 @@ z-index: 99999
   height: 40px;
   font-family: Georgia, serif;
   font-size: 30px;
-  font-weight: bold;
   box-sizing: border-box;
-  color: white;
   margin: 0;
   background-color: rgb(90, 90, 90);
+  color: white;
   outline: none;
   border: none;
   resize: none;
 }
+
+
 .header.error{
-outline: 2px solid red;
+    outline: 2px solid red;
 }
-.description {
+
+.header.lightTheme{
+   background-color: rgb(200, 200, 200);
+    color: black;
+}
+
+.header.error.lightTheme{
+    background-color: rgb(200, 200, 200);
+    color: black;
+}
+
+
+.description{
   position: absolute;
   left: 30px;
   top: 90px;
-  width: 490px;;
+  width: 490px;
   height: 495px;
   font-family: Georgia, serif;
   font-size: 20px;
-  color: white;
   line-height:  1.2;
   box-sizing: border-box;
   margin: 0;
   background-color: rgb(90, 90, 90);
+  color: white;
   outline: none;
   resize: none;
-    overflow: auto;
+  overflow: auto;
+  border: none
 }
 
 .description::-webkit-scrollbar{
@@ -69,10 +88,32 @@ background: rgb(90,90,90);
 background: rgb(122, 122, 122);
 border: 1px solid black
 }
+
 .description.error{
 outline: 2px solid red;
 }
-.cancelEditButton {
+
+.description.lightTheme{
+ background-color: rgb(200, 200, 200);
+ color: black;
+}
+
+.description.lightTheme::-webkit-scrollbar{
+width: 5px;
+display: inline;
+}
+
+.description.lightTheme::-webkit-scrollbar-track{
+background: rgb(200,200,200);
+
+}
+
+.description.lightTheme::-webkit-scrollbar-thumb{
+background: rgb(243, 243, 243);
+border: 1px solid black
+}
+
+.cancelTaskButton {
     position: absolute;
     right: 180px;
     bottom: 30px;
@@ -85,11 +126,20 @@ outline: 2px solid red;
     cursor: pointer;
 }
 
-.cancelEditButton:hover{
+.cancelTaskButton:hover{
 outline: 2px solid rgb(192, 192, 192);
 }
 
-.addEditButton {
+.cancelTaskButton.lightTheme {
+    background-image: url("../../../../public/img/cancel-edit-task-button-light.png");
+    background-color: rgb(200, 200, 200);
+}
+
+.cancelTaskButton.lightTheme:hover {
+   outline: 2px solid rgb(85, 85, 85);
+}
+
+.addTaskButton {
     position: absolute;
     left: 180px;
     bottom: 30px;
@@ -102,8 +152,29 @@ outline: 2px solid rgb(192, 192, 192);
     cursor: pointer;
 }
 
-.addEditButton:hover{
+.addTaskButton:hover{
 outline: 2px solid rgb(192, 192, 192);
+}
+
+.addTaskButton.lightTheme{
+background-color: rgb(200, 200, 200);
+background-image: url("../../../../public/img/add-edit-task-button-light.png")
+}
+
+.addTaskButton.lightTheme:hover{
+outline: 2px solid rgb(85, 85, 85);
+}
+
+.closeModalButton {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    height: 18px;
+    width: 18px;
+    border-radius: 12.5px;
+    border: none;
+    background-image: url("../../../../public/img/close-modal.png");
+    cursor: pointer;
 }
 
 .headerErrorText{

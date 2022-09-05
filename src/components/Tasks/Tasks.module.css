@@ -1,19 +1,33 @@
 .tasksBox {
-    border: 2px solid rgb(0, 0, 0);
+    outline: 2px solid rgb(0, 0, 0);
     border-radius: 12px;
     background-color: rgb(90, 90, 90);
     position: relative;
 }
 
 .tasksBox.lightTheme{ 
-background-color: rgb(211, 211, 211);
+background-color: rgb(200, 200, 200);
 }
 
 .taskElementsBox {
-margin-top: 105px;
+margin-top: 90px;
 overflow-y: auto;
 height: 485px;
 }
+
+.taskElementsBox.searchSettingOff {
+margin-top: 45px;
+}
+
+.taskElementsBox.sortingOn {
+margin-top: 50px;
+}
+
+.taskElementsBox.sortingOn.searchSettingOff {
+margin-top: 5px;
+}
+
+
 
 .taskElementsBox::-webkit-scrollbar{
 width: 7px;
@@ -33,6 +47,18 @@ position: absolute;
 color: white;
 left: 75px;
 top: 95px;
+}
+
+.noNotesText.lightTheme{
+color: rgb(0, 0, 0);
+}
+
+.noNotesText.lightTheme.searchSettingOff{
+top: 50px;
+}
+
+.noNotesText.searchSettingOff{
+top: 50px;
 }
 
 .addButton {
@@ -57,7 +83,7 @@ background-color: rgb(243, 243, 243);
 }
 
 .addButton.lightTheme:hover{
-outline: 2px solid rgb(0, 0, 0);
+outline: 2px solid rgb(85, 85, 85)
 }
 
 .allButton {
@@ -71,6 +97,14 @@ outline: 2px solid rgb(0, 0, 0);
     cursor: pointer;
 }
 
+.allButton.searchSettingOff {
+top: 20px;
+}
+
+.allButton.lightTheme.searchSettingOff {
+top: 20px;
+}
+
 .allButton.lightTheme {
 background-image: url(../../../public/img/list/radio-light.png)
 }
@@ -80,15 +114,22 @@ outline: 1px solid rgb(192, 192, 192);
 }
 
 .allButton.lightTheme:hover{
-outline: 1px solid rgb(0, 0, 0);
+outline: 1px solid rgb(85, 85, 85);
 }
 
 .allButton.added {
  background-image: url(../../../public/img/list/added-radio.png);
 }
 
+.allButton.added.searchSettingOff {
+top: 20px
+}
 .allButton.added.lightTheme {
  background-image: url(../../../public/img/list/added-radio-light.png);
+}
+
+.allButton.added.lightTheme.searchSettingOff {
+top: 20px
 }
 
 .allButtonText {
@@ -100,9 +141,18 @@ outline: 1px solid rgb(0, 0, 0);
     color: white
 }
 
+.allButtonText.searchSettingOff{
+    top: 15px;
+}
+
 .allButtonText.lightTheme {
     color: rgb(0, 0, 0)
 }
+
+.allButtonText.lightTheme.searchSettingOff {
+    top: 15px
+}
+
 
 .favoriteButton {
     background-image: url(../../../public/img/list/radio.png);
@@ -115,8 +165,16 @@ outline: 1px solid rgb(0, 0, 0);
     cursor: pointer;
 }
 
+.favoriteButton.searchSettingOff {
+top: 20px
+}
+
 .favoriteButton.lightTheme {
 background-image: url(../../../public/img/list/radio-light.png)
+}
+
+.favoriteButton.lightTheme.searchSettingOff{
+top: 20px;
 }
 
 .favoriteButton:hover{
@@ -124,15 +182,23 @@ outline: 1px solid rgb(192, 192, 192);
 }
 
 .favoriteButton.lightTheme:hover{
-outline: 1px solid rgb(0, 0, 0);
+outline: 1px solid rgb(85, 85, 85);
 }
 
 .favoriteButton.added {
  background-image: url(../../../public/img/list/added-radio.png);
 }
 
+.favoriteButton.added.searchSettingOff {
+top: 20px;
+}
+
 .favoriteButton.added.lightTheme {
  background-image: url(../../../public/img/list/added-radio-light.png);
+}
+
+.favoriteButton.added.lightTheme.searchSettingOff {
+ top: 20px;
 }
 
 .favoriteButtonText {
@@ -144,8 +210,17 @@ outline: 1px solid rgb(0, 0, 0);
     color: white;
 }
 
+.favoriteButtonText.searchSettingOff {
+    top: 15px;
+}
+
+
 .favoriteButtonText.lightTheme {
 color: black;
+}
+
+.favoriteButtonText.lightTheme.searchSettingOff {
+top: 15px;
 }
 
 .search {
