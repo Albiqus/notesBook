@@ -25,30 +25,46 @@ const Descriptions = (props) => {
     }
 
     let counter = 0;
+
+    let descriptionClassName = classes.description
+    let descriptionBoxClassName = classes.descriptionBox
+    let headerClassName = classes.header
+    let editButtonClassName = classes.editButton
+    let removeButtonClassName = classes.removeButton
+    let favoriteButtonPressedClassName = classes.favoriteButtonPressed
+    let favoriteButtonClassName = classes.favoriteButton
+    
+    if (props.theme !== 'тёмная') {
+        descriptionClassName += ` ${classes.lightTheme}`
+        descriptionBoxClassName += ` ${classes.lightTheme}`
+        headerClassName += ` ${classes.lightTheme}`
+        editButtonClassName += ` ${classes.lightTheme}`
+        removeButtonClassName += ` ${classes.lightTheme}`
+        favoriteButtonPressedClassName += ` ${classes.lightTheme}`
+        favoriteButtonClassName += ` ${classes.lightTheme}`
+    }
+
+
     if (props.currentTaskId !== null ) {
         const DescriptionTextElements = props.tasks[props.currentTaskId].description.split("\n").map(textElement => {
             counter++
-            return <p key={counter} className = {props.theme === 'тёмная' ? classes.description : `${classes.description} ${classes.lightTheme}`}>{textElement}</p>})
+            return <p key={counter} className={descriptionClassName}>{textElement}</p>})
         return (
-            <div onDoubleClick={onEditButtonClick} className={props.theme === 'тёмная' ? classes.descriptionBox : `${classes.descriptionBox} ${classes.lightTheme}` }>
+            <div onDoubleClick={onEditButtonClick} className={descriptionBoxClassName}>
                 <div className={classes.headerText}>
-                    <p className={props.theme === 'тёмная' ? classes.header : `${classes.header} ${classes.lightTheme}`}>{props.tasks[props.currentTaskId].task}</p>
+                    <p className={headerClassName}>{props.tasks[props.currentTaskId].task}</p>
                 </div>
                 <div className={classes.descriptionText}>
                     {DescriptionTextElements}
                 </div>
                 <div>
-                    <button onClick={onEditButtonClick} className={props.theme === 'тёмная' ? classes.editButton : `${classes.editButton} ${classes.lightTheme}`}></button>
-                    <button onClick={onRemoveButtonClick} className={props.theme === 'тёмная' ? classes.removeButton : `${classes.removeButton} ${classes.lightTheme}`}></button>
+                    <button onClick={onEditButtonClick} className={editButtonClassName}></button>
+                    <button onClick={onRemoveButtonClick} className={removeButtonClassName}></button>
                     <button onClick={onFavoriteButtonClick}
                         className={
                             props.tasks[props.currentTaskId].favoriteStatus
-                                ? props.theme === 'тёмная'
-                                    ? classes.favoriteButtonPressed
-                                    : `${classes.favoriteButtonPressed} ${classes.lightTheme}`
-                                : props.theme === 'тёмная'
-                                    ? classes.favoriteButton
-                                    : `${classes.favoriteButton} ${classes.lightTheme}`
+                                ? favoriteButtonPressedClassName
+                                : favoriteButtonClassName
                                 }></button>
                 </div>
                 
@@ -56,7 +72,7 @@ const Descriptions = (props) => {
         )
     } else {
         return (
-            <div className={props.theme === 'тёмная' ? classes.descriptionBox : `${classes.descriptionBox} ${classes.lightTheme}`}>
+            <div className={descriptionBoxClassName}>
                 
             </div>
         ) 

@@ -2,10 +2,13 @@ import classes from './Decoration.module.css';
 import { connect } from 'react-redux';
 
 const Decoration = (props) => {
+    let decorationBoxClassName = classes.decorationBox
+    if (props.theme !== 'тёмная') {
+        decorationBoxClassName += ` ${classes.lightTheme}`
+    }
+
     return (
-        <div className={props.theme === 'тёмная' ? classes.decorationBox : `${classes.decorationBox} ${classes.lightTheme}`} >
-         
-        </div>
+        <div className={decorationBoxClassName}></div>
     )
 }
 

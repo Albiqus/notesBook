@@ -58,37 +58,36 @@ const EditTaskModal = (props) => {
     props.updateDescriptionText(e.target.value)
     }
 
+    let modalContentBoxClassName = classes.modalContentBox
+    let addTaskButtonClassName = classes.addTaskButton
+    let cancelTaskButtonClassName = classes.cancelTaskButton
+    let headerClassName = classes.header
+    let descriptionClassName = classes.description
+
+    if (props.theme !== 'тёмная') {
+        modalContentBoxClassName += ` ${classes.lightTheme}`
+        addTaskButtonClassName += ` ${classes.lightTheme}`
+        cancelTaskButtonClassName += ` ${classes.lightTheme}`
+        headerClassName += ` ${classes.lightTheme}`
+        descriptionClassName += ` ${classes.lightTheme}`
+    }
+
+    if (props.headerSpacesErrorStatus === true) {
+        headerClassName += ` ${classes.error}`
+    }
+    if (props.descriptionSpacesErrorStatus === true) {
+        descriptionClassName += ` ${classes.error}`
+    }
+
     if (props.editNoteModalStatus) {
         return (
             <div className={classes.modalBox}>
-                <div className={props.theme === 'тёмная' ? classes.modalContentBox : `${classes.modalContentBox} ${classes.lightTheme}`}>
-                    <button onClick={onAddButtonClick} className={props.theme === 'тёмная' ? classes.addTaskButton : `${classes.addTaskButton} ${classes.lightTheme}`}></button> 
-                    <button onClick={onCancelButtonClick} className={props.theme === 'тёмная' ? classes.cancelTaskButton : `${classes.cancelTaskButton} ${classes.lightTheme}`}></button> 
+                <div className={modalContentBoxClassName}>
+                    <button onClick={onAddButtonClick} className={addTaskButtonClassName}></button> 
+                    <button onClick={onCancelButtonClick} className={cancelTaskButtonClassName}></button> 
                     <form>
-                        <input
-                            className={
-                                props.headerSpacesErrorStatus === true
-                                    ? props.theme === 'тёмная'
-                                        ? `${classes.header} ${classes.error}`
-                                        : `${classes.header} ${classes.error} ${classes.lightTheme}`
-                                    : props.theme === 'тёмная'
-                                        ? classes.header
-                                        : `${classes.header} ${classes.lightTheme}`}
-                            ref={header}
-                            value={props.headerText}
-                            onChange={onHeaderTextChange} />
-                        <textarea
-                            className={
-                                props.descriptionSpacesErrorStatus === true
-                                    ? props.theme === 'тёмная'
-                                        ? `${classes.description} ${classes.error}`
-                                        : `${classes.description} ${classes.error} ${classes.lightTheme}`
-                                    : props.theme === 'тёмная'
-                                        ? classes.description
-                                        : `${classes.description} ${classes.lightTheme}`}
-                            ref={description}
-                            value={props.descriptionText}
-                            onChange={onDescriptionTextChange} />
+                        <input className={headerClassName} ref={header} value={props.headerText} onChange={onHeaderTextChange} />
+                        <textarea className={descriptionClassName} ref={description} value={props.descriptionText} onChange={onDescriptionTextChange} />
                     </form>
                     {props.headerSpacesErrorStatus === true && <p className={classes.headerErrorText}>заполните это поле</p>}
                     {props.descriptionSpacesErrorStatus === true && <p className={classes.descriptionErrorText}>заполните это поле</p>}

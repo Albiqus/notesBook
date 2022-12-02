@@ -24,13 +24,13 @@ const Tasks = (props) => {
     const onAddButtonClick = () => {
         props.setOnAddNoteModalStatus(true)
     }
-    
+
     const onAllButtonClick = () => {
-    props.setFilterStatus('all')
+        props.setFilterStatus('all')
     }
 
     const onFavoriteButtonClick = () => {
-    props.setFilterStatus('favorite')
+        props.setFilterStatus('favorite')
     }
 
     const onSearchChange = (e) => {
@@ -38,97 +38,65 @@ const Tasks = (props) => {
         props.setNewTasks(e.target.value)
 
     }
-        return (
-            <div className={props.theme === 'тёмная' ? classes.tasksBox : `${classes.tasksBox} ${classes.lightTheme}`}>
-                {props.searchSetting === 'вкл' && 
-                <input
-                    onChange={onSearchChange}
-                        className={props.theme === 'тёмная'
-                        ? classes.search
-                        : `${classes.search} ${classes.lightTheme}`}
-                    value={props.searchText}
-                    placeholder='поиск..'></input>}
-                {props.sorting === 'вкл' && 
-                    <div>
-                        <p className={
-                            props.theme === 'тёмная'
-                                ? props.searchSetting === 'вкл'
-                                    ? classes.allButtonText
-                                    : `${classes.allButtonText} ${classes.searchSettingOff}`
-                                : props.searchSetting === 'вкл'
-                                    ? `${classes.allButtonText} ${classes.lightTheme}`
-                                    : `${classes.allButtonText} ${classes.lightTheme} ${classes.searchSettingOff}`}>все</p>
-                        <p className={props.theme === 'тёмная'
-                            ? props.searchSetting === 'вкл'
-                                ? classes.favoriteButtonText
-                                : `${classes.favoriteButtonText} ${classes.searchSettingOff}`
-                            : props.searchSetting === 'вкл'
-                                ? `${classes.favoriteButtonText} ${classes.lightTheme}`
-                                : `${classes.favoriteButtonText} ${classes.lightTheme} ${classes.searchSettingOff}`
-                                }>избранные</p>
-                        <div onClick={onAllButtonClick}
-                            className={
-                                props.filterStatus === 'all'
-                                    ? props.theme === 'тёмная'
-                                        ? props.searchSetting === 'вкл'
-                                            ? `${classes.allButton} ${classes.added}`
-                                            : `${classes.allButton} ${classes.added}  ${classes.searchSettingOff}`
-                                        : props.searchSetting === 'вкл'
-                                            ? `${classes.allButton} ${classes.added} ${classes.lightTheme}`
-                                            : `${classes.allButton} ${classes.added} ${classes.lightTheme} ${classes.searchSettingOff}`
-                                    : props.theme === 'тёмная'
-                                        ?   props.searchSetting === 'вкл'
-                                            ? classes.allButton
-                                            : `${classes.allButton} ${classes.searchSettingOff}`
-                                        : props.searchSetting === 'вкл'
-                                            ? `${classes.allButton} ${classes.lightTheme}`
-                                            : `${classes.allButton} ${classes.lightTheme} ${classes.searchSettingOff}`
-                                        }>
 
-                        </div>
-                        <div onClick={onFavoriteButtonClick}
-                            className={
-                                props.filterStatus === 'favorite'
-                                    ? props.theme === 'тёмная'
-                                        ? props.searchSetting === 'вкл'
-                                            ? `${classes.favoriteButton} ${classes.added}`
-                                            : `${classes.favoriteButton} ${classes.added} ${classes.searchSettingOff}`
-                                        : props.searchSetting === 'вкл'
-                                            ? `${classes.favoriteButton} ${classes.added} ${classes.lightTheme}`
-                                            : `${classes.favoriteButton} ${classes.added} ${classes.lightTheme} ${classes.searchSettingOff}`
-                                    : props.theme === 'тёмная'
-                                        ? props.searchSetting === 'вкл'
-                                            ? classes.favoriteButton
-                                            : `${classes.favoriteButton} ${classes.searchSettingOff}`
-                                        : props.searchSetting === 'вкл'
-                                            ? `${classes.favoriteButton} ${classes.lightTheme}`
-                                            : `${classes.favoriteButton} ${classes.lightTheme} ${classes.searchSettingOff}`
-                                        }>
-                        </div>
+    let searchClassName = classes.search
+    let tasksBoxClassName = classes.tasksBox
+    let allButtonTextClassName = classes.allButtonText
+    let favoriteButtonTextCLassName = classes.favoriteButtonText
+    let allButtonClassName = classes.allButton
+    let favoriteButtonClassName = classes.favoriteButton
+    let noNotesTextClassName = classes.noNotesText
+    let taskElementsBoxClassName = classes.taskElementsBox
+
+    if (props.theme !== 'тёмная') {
+        searchClassName += ` ${classes.lightTheme}`
+        tasksBoxClassName += ` ${classes.lightTheme}`
+        allButtonTextClassName += ` ${classes.lightTheme}`
+        favoriteButtonTextCLassName += ` ${classes.lightTheme}`
+        allButtonClassName += ` ${classes.lightTheme}`
+        favoriteButtonClassName += ` ${classes.lightTheme}`
+        noNotesTextClassName += ` ${classes.lightTheme}`
+    }
+
+    if (props.searchSetting !== 'вкл') {
+        allButtonTextClassName += ` ${classes.searchSettingOff}`
+        favoriteButtonTextCLassName += ` ${classes.searchSettingOff}`
+        allButtonClassName += ` ${classes.searchSettingOff}`
+        favoriteButtonClassName += ` ${classes.searchSettingOff}`
+        noNotesTextClassName += ` ${classes.searchSettingOff}`
+        taskElementsBoxClassName += ` ${classes.searchSettingOff}`
+    }
+
+    
+    if (props.filterStatus === 'all') {
+        allButtonClassName += ` ${classes.added}`
+    }
+
+    if (props.filterStatus === 'favorite') {
+        favoriteButtonClassName += ` ${classes.added}`
+    }
+
+    if (props.sorting !== 'вкл') {
+        taskElementsBoxClassName += ` ${classes.sortingOn}`
+    }
+
+        return (
+            <div className={tasksBoxClassName}>
+                {props.searchSetting === 'вкл' && <input onChange={onSearchChange} className={searchClassName} value={props.searchText} placeholder='поиск..'></input>}
+                {props.sorting === 'вкл' &&
+                    <div>
+                        <p className={allButtonTextClassName}>все</p>
+                        <p className={favoriteButtonTextCLassName}>избранные</p>
+                        <div onClick={onAllButtonClick} className={allButtonClassName}></div>
+                        <div onClick={onFavoriteButtonClick} className={favoriteButtonClassName}></div>
                     </div>
                 }
-                
+
                 {props.currentTaskId === null
-                    ? <p className={
-                        props.theme === 'тёмная' 
-                            ? props.searchSetting === 'вкл'
-                                ? classes.noNotesText 
-                                : `${classes.noNotesText} ${classes.searchSettingOff}`
-                            : props.searchSetting === 'вкл'
-                                ? `${classes.noNotesText} ${classes.lightTheme}`
-                                : `${classes.noNotesText} ${classes.lightTheme}  ${classes.searchSettingOff}`
-                            } >нет заметок</p>
-                    : <div className={props.sorting === 'вкл'
-                        ? props.searchSetting === 'вкл'
-                            ? classes.taskElementsBox
-                            : `${classes.taskElementsBox} ${classes.searchSettingOff}`
-                        : props.searchSetting === 'вкл'
-                            ? `${classes.taskElementsBox} ${classes.sortingOn}`
-                            : `${classes.taskElementsBox} ${classes.sortingOn} ${classes.searchSettingOff}`
-                    }>
-                        {taskElements}
-                    </div>}
-                
+                    ? <p className={noNotesTextClassName} >нет заметок</p>
+                    : <div className={taskElementsBoxClassName}>{taskElements}</div>
+                }
+
                 <button className={props.theme === 'тёмная' ? classes.addButton : `${classes.addButton} ${classes.lightTheme}`} onClick={onAddButtonClick}></button>
             </div>
         )
@@ -157,6 +125,6 @@ const TasksContainer = connect(mapStateToProps,
         setFilterStatus,
         updateSearchText,
         setNewTasks
-})(Tasks)
+    })(Tasks)
 
 export { TasksContainer }

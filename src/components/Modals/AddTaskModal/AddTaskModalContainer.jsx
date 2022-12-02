@@ -65,44 +65,39 @@ const AddTaskModal = (props) => {
         closeModal()
     }
     }
+
+    let modalContentBoxClassName = classes.modalContentBox
+    let addTaskButtonClassName = classes.addTaskButton
+    let cancelTaskButtonClassName = classes.cancelTaskButton
+    let headerClassName = classes.header
+    let descriptionClassName = classes.description
+
+    if (props.theme !== 'тёмная') {
+        modalContentBoxClassName += ` ${classes.lightTheme}`
+        addTaskButtonClassName += ` ${classes.lightTheme}`
+        cancelTaskButtonClassName += ` ${classes.lightTheme}`
+        headerClassName += ` ${classes.lightTheme}`
+        descriptionClassName += ` ${classes.lightTheme}`
+    }
+
+    if (props.headerSpacesErrorStatus === true) {
+        headerClassName += ` ${classes.error}`
+    }
+    if (props.descriptionSpacesErrorStatus === true) {
+        descriptionClassName += ` ${classes.error}`
+    }
     if (props.addNoteModalStatus) {
         return (
             <div className={classes.modalBox}>
-                <div className={props.theme === 'тёмная' ? classes.modalContentBox : `${classes.modalContentBox} ${classes.lightTheme}`}>
-                    <button onClick={onAddButtonClick} className={props.theme === 'тёмная' ? classes.addTaskButton : `${classes.addTaskButton} ${classes.lightTheme}`}></button> 
-                    <button onClick={onCancelButtonClick} className={props.theme === 'тёмная' ? classes.cancelTaskButton : `${classes.cancelTaskButton} ${classes.lightTheme}`}></button> 
+                <div className={modalContentBoxClassName}>
+                    <button onClick={onAddButtonClick} className={addTaskButtonClassName}></button> 
+                    <button onClick={onCancelButtonClick} className={cancelTaskButtonClassName}></button> 
                     <form>
-                        <input
-                            className={
-                                props.headerSpacesErrorStatus === true
-                                    ? props.theme === 'тёмная'
-                                        ? `${classes.header} ${classes.error}`
-                                        : `${classes.header} ${classes.error} ${classes.lightTheme}`
-                                    : props.theme === 'тёмная'
-                                        ? classes.header
-                                        : `${classes.header} ${classes.lightTheme}`}
-
-                            ref={input} placeholder='Название..'
-                            value={props.headerText}
-                            onChange={updateHeaderText} />
-                        <textarea
-                            className={
-                                props.descriptionSpacesErrorStatus === true
-                                    ? props.theme === 'тёмная'
-                                        ? `${classes.description} ${classes.error}`
-                                        : `${classes.description} ${classes.error} ${classes.lightTheme}`
-                                    : props.theme === 'тёмная'
-                                        ? classes.description
-                                        : `${classes.description} ${classes.lightTheme}`}
-                            ref={textarea}
-                            placeholder='Описание..'
-                            value={props.descriptionText}
-                            onChange={updateDescriptionText}
-                        />
+                        <input className={headerClassName} ref={input} placeholder='Название..' value={props.headerText} onChange={updateHeaderText} />
+                        <textarea className={descriptionClassName} ref={textarea} placeholder='Описание..' value={props.descriptionText} onChange={updateDescriptionText}/>
                     </form>
                     {props.headerSpacesErrorStatus === true && <p className={classes.headerErrorText}>заполните это поле</p>}
                     {props.descriptionSpacesErrorStatus === true && <p className={classes.descriptionErrorText}>заполните это поле</p>}
-                    
                 </div>
             </div>
         )
